@@ -1,0 +1,73 @@
+FROM ubuntu:20.04 as single-robot-v850-mruby
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+	git \
+	vim \
+	bison \
+	gem \
+	net-tools \
+	build-essential \
+	libssl-dev libreadline-dev zlib1g-dev \
+	wget 
+
+RUN git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+RUN echo 'export PATH=${HOME}/.rbenv/bin:${PATH}' >> ~/.bashrc
+RUN git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+RUN ${HOME}/.rbenv/bin/rbenv install  2.6.5
+RUN ${HOME}/.rbenv/bin/rbenv global  2.6.5
+RUN echo 'export PATH=${HOME}/.rbenv/versions/2.6.5/bin:${PATH}' >> ~/.bashrc
+
+WORKDIR /root
+RUN mkdir -p downloads 
+RUN mkdir -p tools 
+RUN mkdir -p workspace
+
+WORKDIR /root/downloads 
+RUN wget https://github.com/toppers/athrill-gcc-v850e2m/releases/download/v1.1/athrill-gcc-package.tar.gz 
+RUN wget https://github.com/mruby/mruby/archive/2.0.1.tar.gz
+
+WORKDIR /root/tools
+RUN tar xzvf ../downloads/athrill-gcc-package.tar.gz 
+RUN tar xzvf ../downloads/2.0.1.tar.gz 
+
+ENV MRUBY_CONFIG /root/mruby-ev3rt/build_config_ev3rt_sim.rb
+
+WORKDIR /root/tools/athrill-gcc-package
+RUN tar xzvf athrill-gcc.tar.gz
+RUN echo 'export PATH=/root/tools/athrill-gcc-package/usr/local/athrill-gcc/bin/:${PATH}' >> /root/.bashrc
+
+
+WORKDIR /root
+RUN git clone --depth 1 https://github.com/toppers/athrill.git && \
+    git clone --depth 1 https://github.com/toppers/athrill-target-v850e2m.git && \
+    git clone --depth 1 https://github.com/toppers/athrill-device.git && \
+    git clone --depth 1 https://github.com/yamanekko/mruby-ev3rt.git
+WORKDIR /root/mruby-ev3rt
+RUN cat build_config_ev3rt_sim.rb | \
+	sed 's/EV3RT_PATH =[0-9a-zA-Z\/ \"\.\-]*/EV3RT_PATH = "\/root\/workspace\/ev3rt-athrill-v850e2m"/g' |  \
+	sed 's/GNU_TOOL_PREFX =[0-9a-zA-Z\/ \"\.\-]*/GNU_TOOL_PREFX = "\/root\/tools\/athrill-gcc-package\/usr\/local\/athrill-gcc\/bin\/v850-elf-"/g' > tmp.rb
+RUN mv tmp.rb build_config_ev3rt_sim.rb 
+WORKDIR /root/athrill-target-v850e2m/build_linux
+RUN make clean && \
+    make timer32=true vdev_disable=true skip_clock_bugfix=true supress_detect_error=true etrobo_optimize=true
+WORKDIR /root/athrill-device/device/ev3com
+RUN make clean;make
+
+#WORKDIR /root/tools/mruby-2.0.1
+#RUN make
+
+RUN echo 'export PATH=/root/athrill/bin/linux:${PATH}' >> ~/.bashrc
+RUN mkdir workspace
+
+WORKDIR /root/workspace
+RUN  mkdir -p /root/workspace/ev3rt-athrill-v850e2m
+RUN  ln -s  /root/athrill /root/workspace/athrill
+RUN ln -s /root/workspace/ev3rt-athrill-v850e2m/docker/utils/start-athrill.bash .
+RUN ln -s  /root/workspace/ev3rt-athrill-v850e2m/docker/utils/start-athrill-mmap.bash .
+RUN ln -s /root/workspace/ev3rt-athrill-v850e2m/docker/utils/mruby/clean_build.bash .
+RUN ln -s /root/workspace/ev3rt-athrill-v850e2m/docker/utils/mruby/rebuild.bash .
+RUN ln -s /root/workspace/ev3rt-athrill-v850e2m/docker/utils/Makefile.workspace .
+ENV RUBYOPT -EUTF-8
+

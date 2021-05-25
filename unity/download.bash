@@ -31,4 +31,5 @@ wget https://github.com/toppers/hakoniwa-Unity-HackEV/releases/download/v3.0/${B
 mv ${BINARY_NAME} unity/${PROJ_NAME}/
 cd unity/${PROJ_NAME}/
 unzip ${BINARY_NAME}
+chmod +x Build/${PROJ_NAME}.exe
 rm -f ${BINARY_NAME}

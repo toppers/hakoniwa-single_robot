@@ -1,7 +1,11 @@
 #!/bin/bash
 
-bash utils/config/create_config-mmap.bash base_practice_1 
+export PATH=/root/hakoniwa-core/impl/asset/client/build/cpp:${PATH}
+cd /root/workspace 
+
+bash config/create_config.bash base_practice_1 eth0
+#bash config/create_config_bt.bash base_practice_1 eth0
 
 cd proxy
 
-bash hakoniwa_proxy-mac.bash 127.0.0.1
+bash hakoniwa_proxy.bash

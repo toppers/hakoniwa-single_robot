@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ $# -ne 1 -a $# -ne 2 ]
+if [ $# -ne 1 ]
 then
-	echo "Usage: $0 <aplname> [bt]"
+	echo "Usage: $0 <aplname>"
 	exit 1
 fi
 
@@ -30,6 +30,5 @@ DOCKER_IMAGE=single-robot/ev3rt-v850:v1.0.0
 sudo docker run \
 	-v ${WORKSPACE_DIR}/sdk:/root/workspace/sdk \
 	-v ${WORKSPACE_DIR}/utils/config:/root/workspace/config \
-	-v ${WORKSPACE_DIR}/unity:/root/workspace/unity \
 	-v ${WORKSPACE_DIR}/proxy:/root/workspace/proxy \
 	-it --rm --net host --name ev3rt-v850 ${DOCKER_IMAGE} 

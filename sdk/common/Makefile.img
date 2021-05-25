@@ -227,7 +227,7 @@ APPL_CDL = @(CDLFILE)
 #APPLDIRS += ../../target/v850_gcc/drivers/motor/include
 #APPLDIRS += ../../target/v850_gcc/drivers/common/include
 #APPLDIRS += ../../target/v850_gcc/TLSF-2.4.6/include ../../target/v850_gcc/TLSF-2.4.6/src
-APPLDIRS += ../../target/v850_gcc/athrill
+APPLDIRS += ../../../ev3rt-athrill-v850e2m/target/v850_gcc/athrill
 APPLDIRS += ../../../athrill/apl/include
 APPLDIRS += ../../../athrill/apl/src
 

@@ -108,9 +108,9 @@ RUN echo 'export PATH=/root/hakoniwa-core/impl/asset/client/build/cpp:${PATH}' >
 RUN mkdir workspace
 
 WORKDIR /root/workspace
-COPY utils/start-athrill.bash .
-COPY utils/clean_build.bash .
-COPY utils/rebuild.bash .
+COPY start-athrill.bash .
+COPY clean_build.bash .
+COPY rebuild.bash .
 ENV RUBYOPT -EUTF-8
 RUN apt update && apt install netcat -y
 CMD ["/root/workspace/proxy/start_proxy.bash"]

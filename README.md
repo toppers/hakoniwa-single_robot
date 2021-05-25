@@ -43,7 +43,7 @@
 
 ## シミュレーション実行
 * 端末C(WSL2)で，Unity側のシミュレータを起動してください(利用しているETHERがeth0, アプリケーション名が base_practice_1の場合)．
-   * $ bash unity/start-proxy.bash single-robot eth0
+   * $ bash start-unity.bash single-robot eth0
 * 初回起動時は，single-robot は起動できますが，通信ができない状態になっている可能性があります．
 * そのため，Windows Defender の[詳細設定]⇒[受信規則]に存在するsingle-robotに対する操作を「許可」にしてください．
 
@@ -69,7 +69,7 @@
 
 * 準備
   * WSL2 上で，以下のフォルダに移動します．
-    *  docker/utils/analyis
+    *  utils/analyis
   * UDPパケット参照ツールをビルドします．
     * make clean;make
 * 参照手順

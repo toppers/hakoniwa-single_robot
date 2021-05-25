@@ -30,7 +30,6 @@ DOCKER_IMAGE=single-robot/ev3rt-v850:v1.0.0
 sudo docker run \
 	-v ${WORKSPACE_DIR}/sdk:/root/workspace/sdk \
 	-v ${WORKSPACE_DIR}/utils/config:/root/workspace/config \
-	-v ${WORKSPACE_DIR}/utils/make:/root/workspace/make \
 	-v ${WORKSPACE_DIR}/unity:/root/workspace/unity \
 	-v ${WORKSPACE_DIR}/proxy:/root/workspace/proxy \
 	-it --rm --net host --name ev3rt-v850 ${DOCKER_IMAGE} 

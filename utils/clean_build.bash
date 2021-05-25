@@ -10,7 +10,5 @@ APL_NAME=${1}
 
 cd ${EV3RT_DIR}
 
+make clean img=${APL_NAME}
 make img=${APL_NAME}
-
-
-

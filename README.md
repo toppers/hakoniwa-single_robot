@@ -18,7 +18,7 @@
    * 例．$ cd ev3rt-athrill-v850e2m/docker
 * 以下のコマンド実行して，docker image を作成してください．
    * $ sudo service docker start 
-   * $ bash create-image-bt.bash
+   * $ bash docker/create-image.bash
 * 以下のコマンドを実行して，single-robotのUnityシミュレータ(Unityバイナリ)をダウンロードしてください．
    * $ bash unity/download.bash single-robot WindowsBinary.zip
 

@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
 	pkg-config \
 	curl \
 	net-tools \
+	netcat \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -105,5 +106,4 @@ COPY start-athrill.bash .
 COPY clean_build.bash .
 COPY rebuild.bash .
 ENV RUBYOPT -EUTF-8
-RUN apt update && apt install netcat -y
 CMD ["/root/workspace/proxy/start_proxy.bash"]

@@ -2,9 +2,7 @@ FROM ubuntu:20.04 as single-robot-v850
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV CMAKE_INSTALL_DIR /local
-ENV PATH $PATH:/grpc/cmake/build
-ENV PATH $PATH:/grpc/cmake/build/third_party/protobuf
+ENV CMAKE_INSTALL_DIR /usr/local/cmake
 ENV PATH $PATH:$CMAKE_INSTALL_DIR/bin
 
 RUN apt-get update && apt-get install -y \
@@ -54,59 +52,54 @@ RUN ${HOME}/.rbenv/bin/rbenv global  2.6.5
 RUN echo 'export PATH=${HOME}/.rbenv/versions/2.6.5/bin:${PATH}' >> ~/.bashrc
 
 WORKDIR /root
-RUN mkdir -p downloads 
-RUN mkdir -p tools 
-RUN mkdir -p workspace
-
-WORKDIR /root/downloads 
 RUN wget https://github.com/toppers/athrill-gcc-v850e2m/releases/download/v1.1/athrill-gcc-package.tar.gz 
-
-WORKDIR /root/tools
-RUN tar xzvf ../downloads/athrill-gcc-package.tar.gz 
-
-WORKDIR /root/tools/athrill-gcc-package 
+RUN tar xzvf athrill-gcc-package.tar.gz && \
+	rm -f athrill-gcc-package.tar.gz
+WORKDIR /root/athrill-gcc-package
 RUN	tar xzvf athrill-gcc.tar.gz && \
 	rm -f athrill-gcc-package.tar.gz && \
 	rm -f *.tar.gz
-RUN echo 'export PATH=/root/tools/athrill-gcc-package/usr/local/athrill-gcc/bin/:${PATH}' >> /root/.bashrc
+RUN echo 'export PATH=/root/athrill-gcc-package/usr/local/athrill-gcc/bin/:${PATH}' >> /root/.bashrc
 
 WORKDIR /root
-RUN  mkdir -p /root/athrill-device
 RUN git clone --depth 1 https://github.com/toppers/athrill.git && \
-    git clone --depth 1 https://github.com/toppers/athrill-device.git && \
-    git clone --depth 1 https://github.com/toppers/athrill-target-v850e2m.git && \
-    git clone --depth 1 https://github.com/toppers/ev3rt-athrill-v850e2m.git && \
-    git clone --recursive https://github.com/toppers/hakoniwa-core.git
+	cd athrill && \
+	git pull
+RUN echo 'export PATH=/root/athrill/bin/linux:${PATH}' >> ~/.bashrc
 
-WORKDIR /root/athrill
-RUN git pull
-
-WORKDIR /root/athrill-device
-RUN git pull
-
-WORKDIR /root/athrill-target-v850e2m
-RUN git pull
-
-WORKDIR /root/ev3rt-athrill-v850e2m
-RUN git pull
-
-WORKDIR /root/hakoniwa-core/impl/asset/client/build
-RUN git pull
-RUN  bash build.bash cpp clean && \
-	bash build.bash cpp
-
+WORKDIR /root
+RUN git clone --depth 1 https://github.com/toppers/athrill-target-v850e2m.git && \
+	cd athrill-target-v850e2m && \
+	git pull
 WORKDIR /root/athrill-target-v850e2m/build_linux
 RUN make clean && \
-    make timer32=true serial_fifo_enable=true vdev_disable=true enable_bt_serial=true skip_clock_bugfix=true supress_detect_error=true etrobo_optimize=true reuse_port=true
+	make timer32=true serial_fifo_enable=true vdev_disable=true enable_bt_serial=true skip_clock_bugfix=true supress_detect_error=true etrobo_optimize=true reuse_port=true
+
+WORKDIR /root
+RUN git clone --depth 1 https://github.com/toppers/ev3rt-athrill-v850e2m.git && \
+	cd ev3rt-athrill-v850e2m && \
+	git pull
+
+WORKDIR /root
+RUN git clone --recursive https://github.com/toppers/hakoniwa-core.git && \
+	cd hakoniwa-core && \
+	git checkout relpath && \
+	git pull
+WORKDIR /root/hakoniwa-core/impl/asset/client/build
+RUN bash build.bash cpp clean && \
+	bash build.bash cpp
+RUN echo 'export PATH=/root/hakoniwa-core/impl/asset/client/build/cpp:${PATH}' >> ~/.bashrc
+
+WORKDIR /root
+RUN git clone --depth 1 https://github.com/toppers/athrill-device.git && \
+	cd athrill-device && \
+	git pull
 WORKDIR /root/athrill-device/device/ev3com
-RUN make clean;make
+RUN make clean && make
 WORKDIR /root/athrill-device/device/ev3com/build
 RUN bash build.bash all
 
-RUN echo 'export PATH=/root/athrill/bin/linux:${PATH}' >> ~/.bashrc
-RUN echo 'export PATH=/root/hakoniwa-core/impl/asset/client/build/cpp:${PATH}' >> ~/.bashrc
-RUN mkdir workspace
-
+RUN mkdir -p /root/workspace
 WORKDIR /root/workspace
 COPY start-athrill.bash .
 COPY clean_build.bash .

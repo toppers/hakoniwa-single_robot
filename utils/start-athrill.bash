@@ -7,17 +7,17 @@ then
 fi
 APL_NAME=${1}
 
-EV3RT_DIR=ev3rt-athrill-v850e2m
+WORKDIR=./sdk/workspace
 
-if [ -d ${EV3RT_DIR}/sdk/workspace/${APL_NAME} ]
+if [ -d ${WORKDIR}/${APL_NAME} ]
 then
     :
 else
-    echo "ERROR: not found directory: ${EV3RT_DIR}/sdk/workspace/${APL_NAME}"
+    echo "ERROR: not found directory: ${WORKDIR}/${APL_NAME}"
     exit 1
 fi
 
-cd ${EV3RT_DIR}/sdk/workspace/${APL_NAME}
+cd ${WORKDIR}/${APL_NAME}
 
 if [ -f ../asp ]
 then

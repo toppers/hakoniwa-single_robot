@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 if [ $# -ne 1 ]
 then
 	echo "Usage: $0 <apl-name>"
@@ -9,8 +10,4 @@ EV3RT_DIR=./sdk/workspace
 APL_NAME=${1}
 
 cd ${EV3RT_DIR}
-
-make img=${APL_NAME}
-
-
-
+make -f ../common/Makefile.workspace img=${APL_NAME}

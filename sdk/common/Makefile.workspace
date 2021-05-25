@@ -142,7 +142,7 @@ realclean: clean
 ifdef app
 configure_copts := -DBUILD_MODULE
 endif
-prepare-obj-folder: clean
+prepare-obj-folder:
 	@mkdir -p $(OBJDIR)
 	cd $(OBJDIR) && \
 	ruby $(KERNELDIR)/configure.rb  -T v850_gcc -A app \
@@ -154,8 +154,7 @@ prepare-obj-folder: clean
 		-t \
 		-d ./dep \
 		-C ../common/athrill_common.cdl \
-		-U "$(APPLOBJS)" && \
-	make clean
+		-U "$(APPLOBJS)"
 		# -S "banner.o syslog.o serial.o logtask.o" 
 
 .PHONY: clean realclean prepare-obj-folder img app

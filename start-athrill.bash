@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ $# -ne 1 -a $# -ne 2 ]
+then
+	echo "Usage: $0 <aplname> [cpumode={CPU,DEBUG}]"
+	exit 1
+fi
+
 CPU_MODE=CPU
 if [ $# -eq 2 ]
 then

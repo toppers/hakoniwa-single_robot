@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ $# -ne 1 -a $# -ne 2 ]
+if [ $# -ne 1 ]
 then
-	echo "Usage: $0 <aplname> [bt]"
+	echo "Usage: $0 <aplname>"
 	exit 1
 fi
 

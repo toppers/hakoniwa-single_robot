@@ -9,8 +9,6 @@
       * sudo apt-get install docker-ce
     * WSL2環境に ifconfig をインストールしてください．
       * sudo apt install net-tools 
-  * mruby を利用する方も基本的には同じ方法でインストール/シミュレーションできます．
-    * 一部，操作が異なるところについては，[mruby]という表記で説明追記しております． 
 
 ## docker版単体ロボットシミュレータ適用手順
 * docker を WSL2(Ubuntu 20.04.1 LTS) にインストールしてください．
@@ -21,7 +19,6 @@
 * 以下のコマンド実行して，docker image を作成してください．
    * $ sudo service docker start 
    * $ bash create-image-bt.bash
-   * [mruby] $ bash create-image-mruby.bash
 * 以下のコマンドを実行して，single-robotのUnityシミュレータ(Unityバイナリ)をダウンロードしてください．
    * $ bash unity/download.bash single-robot WindowsBinary.zip
 
@@ -34,7 +31,6 @@
   * $ sudo service docker start 
 * 端末Aで，proxy/proxy_param.jsonの`target_options`を，開発対象のアプリケーション名にしてください．
    * 例：base_practice_1
-   * [mruby] base_practice_1_mruby
 
 * 端末Aで，以下のように docker コンテナを起動してください．
    * $ bash run-proxy.bash base_practice_1
@@ -42,12 +38,8 @@
     * 起動するとdocker コンテナ内でエラーログが連続出力されますが，無視してください(シミュレーション実行時に正常になります)．
 * 端末Bで，以下のように 端末Aで起動したdocker コンテナに入ります．
    * $ bash attach.bash
-   * [mruby] $ bash attach-mruby.bash
-   * [mruby] dockerの初回起動時のみ，mrubyのインストールコマンドを以下のように実行してください．
-   * [mruby] # bash mruby/install.bash
 * 端末B(docker)で，EV3RTのサンプルアプリ(base_practice_1)をビルドしてください．
    * \# bash clean_build.bash base_practice_1
-   * [mruby] \# bash clean_build.bash base_practice_1_mruby.bash
 
 ## シミュレーション実行
 * 端末C(WSL2)で，Unity側のシミュレータを起動してください(利用しているETHERがeth0, アプリケーション名が base_practice_1の場合)．
@@ -144,3 +136,8 @@ body {
   gps_lon: -29.996162414550781
 }
 ```
+
+## TODO
+
+- mrubyアプリ向けの環境構築＆使用方法（#6）
+- macOS, Ubuntuネイティブ環境向けの環境構築＆使用方法（#7）

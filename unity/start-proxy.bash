@@ -16,7 +16,7 @@ then
 	export SYMTIME_MEASURE_FILEPATH=${DIR}
 	UNITY_CFG_TMPL=utils/config/config_proxy_udp_dbg_json.mo
 fi
-UNITY_PRJ_PATH=unity/${UNITY_PRJ}
+UNITY_PRJ_PATH=unity/assets/${UNITY_PRJ}
 
 if [ -d ${UNITY_PRJ_PATH} ]
 then

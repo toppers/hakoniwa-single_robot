@@ -22,9 +22,7 @@
    * $ sudo service docker start 
    * $ bash create-image-bt.bash
    * [mruby] $ bash create-image-mruby.bash
-* 以下のコマンドを実行して，Unity プロジェクトを single-robot として，新規作成してください．
-   * $ mkdir unity/single-robot
-* 以下のコマンドで，Unityのシミュレータ(Unityバイナリ)をダウンロードしてください．
+* 以下のコマンドを実行して，single-robotのUnityシミュレータ(Unityバイナリ)をダウンロードしてください．
    * $ bash unity/download.bash single-robot WindowsBinary.zip
 
 ## シミュレーション環境の準備

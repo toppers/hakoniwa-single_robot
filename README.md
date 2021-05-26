@@ -1,7 +1,49 @@
-# docker版単体ロボットシミュレータのシミュレーション方法
-## 想定環境
- * OS
-   * Windows 10/home
+# 箱庭プロトタイプモデルA：単体ロボット向けシミュレータ
+
+[TOPPERSプロジェクト箱庭WG](https://toppers.github.io/hakoniwa)では，IoT／クラウドロボティクス時代の仮想シミュレーション環境である『箱庭』の研究開発を進めています．本活動での狙いやコンセプトを実証するために，プロトタイプモデルを実装してひろく公開しています．
+
+本リポジトリでは，プロトタイプモデルのひとつである[「単体ロボット向けシミュレータ」](https://toppers.github.io/hakoniwa/prototypes/single-robot/)について，WSL 2/Dockerを用いて最小の構成と手順で試行できる実行環境を提供しています．本プロトタイプモデルでは，[ETロボコン](https://www.etrobo.jp/)を題材として，組込みマイコン上のプログラムの振る舞いを，ロボット上の挙動と連携させて検証を進めることができます．
+
+![](https://toppers.github.io/hakoniwa/img/prototypes/modelA.png)
+
+## 想定するPC環境
+
+* WSL 2/Ubuntu 20.04 LTS（以降，WSL2）の動作するWindows 10 PC
+  * WSL2インストール方法は「[Windows 10 に WSL をインストールする | Microsoft Docs](https://docs.microsoft.com/ja-jp/windows/wsl/install-win10)」などを参考にしてください．
+
+## PC環境の準備
+
+### 本リポジトリのclone
+
+WSL2のターミナルで下記を実行して本リポジトリをcloneしてください．
+
+```
+$ git clone https://github.com/toppers/hakoniwa-single_robot.git
+```
+
+なおWSL2のファイルシステムはWindowsエクスプローラーからは `\\wsl$\Ubuntu-20.04` にてアクセス可能です．
+
+### Docker Engineのインストール
+
+本シミュレータは，WSL2にDocker Engineがインストールされている必要があります．WSL2のターミナルで下記のコマンドの結果が同じように出力されていれば，すでにインストール済みです．
+
+```
+$ which docker
+/usr/bin/docker
+$ service --status-all |& grep docker
+ [ + ]  docker   # または " [ - ]  docker "
+$ service docker status
+ * Docker is running   # または " * Docker is not running "
+```
+
+Docker Engineのインストールはやや手数が多いため，本リポジトリの [`docker/install-docker.bash`](/docker/install-docker.bash) にまとめてあります（「[Install Docker Engine on Ubuntu | Docker Documentation](https://docs.docker.com/engine/install/ubuntu/)」を参考に作成しました）．  
+下記のように実行してください．
+
+```
+$ bash docker/install-docker.bash
+```
+
+
  * 利用する端末
    * WSL2 および WSL2/docker
     * WSL2/Ubuntuにdocker をインストールしてください．
@@ -9,6 +51,8 @@
       * sudo apt-get install docker-ce
     * WSL2環境に ifconfig をインストールしてください．
       * sudo apt install net-tools 
+
+
 
 ## docker版単体ロボットシミュレータ適用手順
 * docker を WSL2(Ubuntu 20.04.1 LTS) にインストールしてください．
@@ -50,10 +94,11 @@
 
 ## TODO
 
-- [] mrubyアプリ向けの環境構築＆使用方法 [#6](https://github.com/toppers/hakoniwa-single_robot/issues/6)
-- [] macOS, Ubuntuネイティブ環境向けの環境構築＆使用方法 [#7](https://github.com/toppers/hakoniwa-single_robot/issues/7)
-- [] mmap版の使用方法 [#8](https://github.com/toppers/hakoniwa-single_robot/issues/8)
-- [] 「Athrillとロボット間の通信パケットのビジュアライズ」の動作確認 [#14](https://github.com/toppers/hakoniwa-single_robot/issues/14)
+- [ ] mrubyアプリ向けの環境構築＆使用方法 [#6](https://github.com/toppers/hakoniwa-single_robot/issues/6)
+- [ ] macOS, Ubuntuネイティブ環境向けの環境構築＆使用方法 [#7](https://github.com/toppers/hakoniwa-single_robot/issues/7)
+- [ ] mmap版の使用方法 [#8](https://github.com/toppers/hakoniwa-single_robot/issues/8)
+- [ ] 「Athrillとロボット間の通信パケットのビジュアライズ」の動作確認 [#14](https://github.com/toppers/hakoniwa-single_robot/issues/14)
+- [ ] ロボットやコース環境のカスタマイズ方法の説明の追加 [#15](https://github.com/toppers/hakoniwa-single_robot/issues/15)
 
 ## ライセンス
 

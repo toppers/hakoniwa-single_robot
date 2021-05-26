@@ -54,3 +54,8 @@
 - [] macOS, Ubuntuネイティブ環境向けの環境構築＆使用方法 [#7](https://github.com/toppers/hakoniwa-single_robot/issues/7)
 - [] mmap版の使用方法 [#8](https://github.com/toppers/hakoniwa-single_robot/issues/8)
 - [] 「Athrillとロボット間の通信パケットのビジュアライズ」の動作確認 [#14](https://github.com/toppers/hakoniwa-single_robot/issues/14)
+
+## ライセンス
+
+[TOPPERSライセンス](https://www.toppers.jp/license.html)で公開しています．  
+著作権者はTOPPERSプロジェクト箱庭ワーキンググループです．詳細は[LICENSE.md](./LICENSE.md)をご参照ください．

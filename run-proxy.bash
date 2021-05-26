@@ -32,4 +32,8 @@ sudo docker run \
 	-v ${WORKSPACE_DIR}/utils/config:/root/workspace/config \
 	-v ${WORKSPACE_DIR}/proxy:/root/workspace/proxy \
 	-v ${WORKSPACE_DIR}/utils:/root/workspace/utils \
+	-v ${WORKSPACE_DIR}/start-athrill.bash:/root/workspace/start-athrill.bash \
+	-v ${WORKSPACE_DIR}/start-athrill.bash:/root/workspace/start-athrill.bash \
+	-v ${WORKSPACE_DIR}/clean_build.bash:/root/workspace/clean_build.bash \
+	-v ${WORKSPACE_DIR}/rebuild.bash:/root/workspace/rebuild.bash \
 	-it --rm --net host --name ev3rt-v850 ${DOCKER_IMAGE} 

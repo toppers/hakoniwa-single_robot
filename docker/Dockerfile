@@ -101,8 +101,5 @@ RUN bash build.bash all
 
 RUN mkdir -p /root/workspace
 WORKDIR /root/workspace
-COPY start-athrill.bash .
-COPY clean_build.bash .
-COPY rebuild.bash .
 ENV RUBYOPT -EUTF-8
 CMD ["/root/workspace/proxy/start_proxy.bash"]

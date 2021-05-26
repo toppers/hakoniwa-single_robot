@@ -26,6 +26,6 @@
     - [athrill](https://github.com/toppers/athrill) / sha: [70bc17fa2915d5bde544779424d4eb7149b5da3b](https://github.com/toppers/athrill/tree/70bc17fa2915d5bde544779424d4eb7149b5da3b)
     - [athrill-device](https://github.com/toppers/athrill-device) / sha: [b331956414dbe2ecd3adf9bd7e38f7e86c460b05](https://github.com/toppers/athrill-device/tree/b331956414dbe2ecd3adf9bd7e38f7e86c460b05)
     - [athrill-target-v850e2m](https://github.com/toppers/athrill-target-v850e2m) / sha: [84e8586336b7a1514fa152a4c0091bb13533b323](https://github.com/toppers/athrill-target-v850e2m/tree/84e8586336b7a1514fa152a4c0091bb13533b323)
-    - [ev3rt-athrill-v850e2m](https://github.com/toppers/ev3rt-athrill-v850e2m) / sha: [739ca30614a0fa7a37697d245015427d8730824a](https://github.com/toppers/ev3rt-athrill-v850e2m/tree/739ca30614a0fa7a37697d245015427d8730824a)
+    - [ev3rt-athrill-v850e2m](https://github.com/toppers/ev3rt-athrill-v850e2m) / sha: [26983b25742c01b65dfba9b23325fce7cb22da50](https://github.com/toppers/ev3rt-athrill-v850e2m/tree/26983b25742c01b65dfba9b23325fce7cb22da50)
     - [hakoniwa-core](https://github.com/toppers/hakoniwa-core) / sha: [449c5866f045c1f21281f770e919f5c7bffe9631](https://github.com/toppers/hakoniwa-core/tree/449c5866f045c1f21281f770e919f5c7bffe9631)
     - [athrill-gcc-v850e2m](https://github.com/toppers/athrill-gcc-v850e2m) / release [v1.1](https://github.com/toppers/athrill-gcc-v850e2m/releases/v1.1)

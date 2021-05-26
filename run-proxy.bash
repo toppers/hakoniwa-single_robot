@@ -24,11 +24,16 @@ fi
 bash utils/config/mo utils/config/proxy_param_json.mo > proxy/proxy_param.json
 
 
+DOCKER_IMAGE=`cat docker/docker_image.txt`
 WORKSPACE_DIR=$(pwd)
-DOCKER_IMAGE=single-robot/ev3rt-v850:v1.0.0
 
 sudo docker run \
 	-v ${WORKSPACE_DIR}/sdk:/root/workspace/sdk \
 	-v ${WORKSPACE_DIR}/utils/config:/root/workspace/config \
 	-v ${WORKSPACE_DIR}/proxy:/root/workspace/proxy \
+	-v ${WORKSPACE_DIR}/utils:/root/workspace/utils \
+	-v ${WORKSPACE_DIR}/start-athrill.bash:/root/workspace/start-athrill.bash \
+	-v ${WORKSPACE_DIR}/start-athrill.bash:/root/workspace/start-athrill.bash \
+	-v ${WORKSPACE_DIR}/clean_build.bash:/root/workspace/clean_build.bash \
+	-v ${WORKSPACE_DIR}/rebuild.bash:/root/workspace/rebuild.bash \
 	-it --rm --net host --name ev3rt-v850 ${DOCKER_IMAGE} 

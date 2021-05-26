@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 as single-robot-v850
+FROM ubuntu:20.04 as hakoniwa-single_robot
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -84,7 +84,6 @@ RUN git clone --depth 1 https://github.com/toppers/ev3rt-athrill-v850e2m.git && 
 WORKDIR /root
 RUN git clone --recursive https://github.com/toppers/hakoniwa-core.git && \
 	cd hakoniwa-core && \
-	git checkout relpath && \
 	git pull
 WORKDIR /root/hakoniwa-core/impl/asset/client/build
 RUN bash build.bash cpp clean && \
@@ -102,8 +101,5 @@ RUN bash build.bash all
 
 RUN mkdir -p /root/workspace
 WORKDIR /root/workspace
-COPY start-athrill.bash .
-COPY clean_build.bash .
-COPY rebuild.bash .
 ENV RUBYOPT -EUTF-8
 CMD ["/root/workspace/proxy/start_proxy.bash"]

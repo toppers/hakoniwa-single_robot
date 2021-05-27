@@ -141,6 +141,8 @@ $ bash start-unity.bash single-robot eth0
 
 ターミナルCで起動したUnityアプリのウィンドウの「開始」をクリックしてください．
 
+以下の動作例は，左上が箱庭アセット・プロキシの起動しているターミナルA，左下がAthrillの実行ログ出力と操作を行えるターミナルB，右上がUnityを実行するターミナルCで右下がUnityアプリのウィンドウです．
+
 ![動作例](https://toppers.github.io/hakoniwa/img/prototypes/modelAdemo.gif)
 
 ## Contributing

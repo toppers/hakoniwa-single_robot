@@ -24,7 +24,7 @@ trap signal_handler INT TERM
 APL_NAME=${1}
 
 ATHRILL_PATH=/root/athrill/bin/linux//athrill2
-WORK_DIR=/root/workspace/ev3rt-athrill-v850e2m/sdk/workspace/${APL_NAME}
+WORK_DIR=/root/workspace/sdk/workspace/${APL_NAME}
 
 cd ${WORK_DIR}
 ${ATHRILL_PATH} -t -1 -c1 -m memory.txt -d device_config.txt ../asp &

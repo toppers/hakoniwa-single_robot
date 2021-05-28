@@ -133,12 +133,6 @@ $ bash start-unity.bash single-robot eth0
 
 ### シミュレータの実行
 
-ターミナルB（Dockerコンテナ内）で，EV3RTのサンプルアプリを実行します．
-
-```
-~/workspace# bash start-athrill.bash base_practice_1
-```
-
 ターミナルCで起動したUnityアプリのウィンドウの「開始」をクリックしてください．
 
 以下の動作例は，左上が箱庭アセット・プロキシの起動しているターミナルA，左下がAthrillの実行ログ出力と操作を行えるターミナルB，右上がUnityを実行するターミナルCで右下がUnityアプリのウィンドウです．

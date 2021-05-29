@@ -21,7 +21,7 @@ then
 	then
 		bash utils/config/mo utils/config/start_proxy_bt_bash.mo > proxy/start_proxy.bash
 	else
-		echo "ERROR: option ${2} is invalid"
+		echo "ERROR: option \"${2}\" is invalid"
 		exit 1
 	fi
 else

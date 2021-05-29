@@ -21,12 +21,13 @@ then
 	then
 		bash utils/config/mo utils/config/start_proxy_bt_bash.mo > proxy/start_proxy.bash
 	else
-		echo "ERROR: option ${2} is invalid"
+		echo "ERROR: option \"${2}\" is invalid"
 		exit 1
 	fi
 else
 	bash utils/config/mo utils/config/start_proxy_bash.mo > proxy/start_proxy.bash
 fi
+chmod +x proxy/start_proxy.bash
 bash utils/config/mo utils/config/proxy_param_json.mo > proxy/proxy_param.json
 
 
@@ -38,8 +39,6 @@ sudo docker run \
 	-v ${WORKSPACE_DIR}/utils/config:/root/workspace/config \
 	-v ${WORKSPACE_DIR}/proxy:/root/workspace/proxy \
 	-v ${WORKSPACE_DIR}/utils:/root/workspace/utils \
-	-v ${WORKSPACE_DIR}/start-athrill.bash:/root/workspace/start-athrill.bash \
-	-v ${WORKSPACE_DIR}/start-athrill.bash:/root/workspace/start-athrill.bash \
 	-v ${WORKSPACE_DIR}/clean_build.bash:/root/workspace/clean_build.bash \
 	-v ${WORKSPACE_DIR}/rebuild.bash:/root/workspace/rebuild.bash \
-	-it --rm --net host --name ev3rt-v850 ${DOCKER_IMAGE} 
+	-it --rm --net host --name hakoniwa_single-robot ${DOCKER_IMAGE}

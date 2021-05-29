@@ -1,1 +1,1 @@
-toppersjp/hakoniwa-single_robot:v1.0.0
+toppersjp/hakoniwa-single_robot:v1.1.0

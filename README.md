@@ -60,14 +60,14 @@ $ sudo apt install net-tools
 
 https://hub.docker.com/r/toppersjp/hakoniwa-single_robot
 
-現在の最新版は **v1.0.0** です．
+現在の最新版は **v1.1.0** です．
 「[バージョン情報・更新履歴](/appendix/version.md)」も参照してください（バージョン番号は[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています）
 
 次のようにDockerを立ち上げて，imageをpullして展開してください．
 
 ```
 $ sudo service docker start 
-$ sudo docker pull toppersjp/hakoniwa-single_robot:v1.0.0
+$ sudo docker pull toppersjp/hakoniwa-single_robot:v1.1.0
 ```
 
 \[開発者向け情報\] 手元でDocker imageを作成する場合は，下記のように実行してください．

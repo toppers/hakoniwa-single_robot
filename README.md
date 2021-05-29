@@ -86,9 +86,9 @@ $ bash unity/download.bash single-robot WindowsBinary.zip
 
 ## シミュレータの実行手順
 
-`base_practice_1` を例題として実行手順を説明します．開発対象のアプリケーション名は `proxy/proxy_param.json` の `target_options:` で設定できます．
+`base_practice_1` を例題として実行手順を説明します．
 
-単体ロボット向けシミュレータの実行には，３台のターミナルを利用します．全てのターミナルで本リポジトリのディレクトリ（`hakoniwa-single_robot/`）に移動してください．
+単体ロボット向けシミュレータの実行には，3台のターミナルを利用します．全てのターミナルで本リポジトリのディレクトリ（`hakoniwa-single_robot/`）に移動してください．
 
 * ターミナルA：箱庭アセット・プロキシ起動用
 * ターミナルB：マイコン側の制御プログラムのビルド用
@@ -104,6 +104,8 @@ $ bash run-proxy.bash base_practice_1
 ```
 
 bluetooth 通信を有効化する場合は，第二引数に `bt` を追加してください．
+
+開発対象のアプリケーション名 `base_practice_1` が `proxy/proxy_param.json` の `target_options:` で設定されていることを確認してください．
 
 起動後にはターミナル上に `14: failed to connect to all addresses` 等のエラーログが連続出力されますが，無視してください（シミュレータの接続待ちに関するもので，他ターミナル上での各シミュレータの実行後に正常になります）．
 

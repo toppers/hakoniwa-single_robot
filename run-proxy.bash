@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]
+if [ $# -gt 2 ]
 then
-	echo "Usage: $0 <aplname>"
+	echo "Usage: $0 <aplname> [bt]"
 	exit 1
 fi
 
@@ -15,11 +15,17 @@ else
 	exit 1
 fi
 
-if [ $# -eq 1 ]
+if [ $# -eq 2 ]
 then
-	bash utils/config/mo utils/config/start_proxy_bash.mo > proxy/start_proxy.bash
+	if [ ${2} = "bt" ]
+	then
+		bash utils/config/mo utils/config/start_proxy_bt_bash.mo > proxy/start_proxy.bash
+	else
+		echo "ERROR: option ${2} is invalid"
+		exit 1
+	fi
 else
-	bash utils/config/mo utils/config/start_proxy_bt_bash.mo > proxy/start_proxy.bash
+	bash utils/config/mo utils/config/start_proxy_bash.mo > proxy/start_proxy.bash
 fi
 bash utils/config/mo utils/config/proxy_param_json.mo > proxy/proxy_param.json
 

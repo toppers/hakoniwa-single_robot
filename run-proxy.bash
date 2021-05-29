@@ -27,6 +27,7 @@ then
 else
 	bash utils/config/mo utils/config/start_proxy_bash.mo > proxy/start_proxy.bash
 fi
+chmod +x proxy/start_proxy.bash
 bash utils/config/mo utils/config/proxy_param_json.mo > proxy/proxy_param.json
 
 

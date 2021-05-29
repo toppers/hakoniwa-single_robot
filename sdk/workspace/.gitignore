@@ -2,5 +2,7 @@
 /asp
 /log.txt
 
-/*/*.txt
+/*/device_config.txt
+/*/memory.txt
+/*/log.txt
 /*/__ev3rt_*

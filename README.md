@@ -150,6 +150,20 @@ Unityアプリのウィンドウの左上にある「開始」をクリックし
   - Unityアプリの起動
 - 右下：Unityアプリのウィンドウ
 
+## 制御プログラムの編集とシミュレーションの再実行
+
+例題の `base_practice_1` では，黒色ラインのコースをトレースしながら，コース上の青色ブロックを前方アームで掴んで青色ゾーンまで運ぶというシナリオが実装されています．
+
+制御プログラムのソースコードは `./sdk/workspace/base_practice_1` にあります．Windowsのエクスプローラーからは `\\wsl$\Ubuntu-20.04\<WSL2内での本リポジトリのgit clone先>\sdk\workspace\base_practice_1` でアクセスして編集することができます．
+
+Dockerコンテナに入っているターミナルBでは，次のコマンドで制御プログラムの再コンパイルができます．
+
+```
+~/workspace# bash rebuild.bash base_practice_1
+```
+
+Unityアプリのウィンドウの「停止」でシミュレーションの停止，次の「リセット」で再起動できます．その後，「開始」で改めてシミュレーションを開始して，制御プログラムの編集内容の結果を確認することができます．
+
 ## Contributing
 
 本リポジトリで公開している「箱庭プロトタイプモデルA：単体ロボット向けシミュレータ」について，ご意見や改善の提案などをぜひ [Issues](https://github.com/toppers/hakoniwa-single_robot/issues) でお知らせください．[Pull Requests](https://github.com/toppers/hakoniwa-single_robot/pulls) も歓迎いたします．

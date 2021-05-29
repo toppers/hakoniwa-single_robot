@@ -91,7 +91,7 @@ $ bash unity/download.bash single-robot WindowsBinary.zip
 単体ロボット向けシミュレータの実行には，３台のターミナルを利用します．全てのターミナルで本リポジトリのディレクトリ（`hakoniwa-single_robot/`）に移動してください．
 
 * ターミナルA：箱庭アセット・プロキシ起動用
-* ターミナルB：マイコン側のプログラム開発・実行用
+* ターミナルB：マイコン側の制御プログラムのビルド用
 * ターミナルC：Unity側のシミュレーション実行用
 
 ### ターミナルAでの操作
@@ -131,19 +131,38 @@ $ bash start-unity.bash single-robot eth0
 
 初回の起動時には，Windows Defenderのファイアウォールに関する警告が表示されます．シミュレータ間の通信のために「アクセスを許可する」をクリックしてください．Windows Defender の[詳細設定]⇒[受信規則]に存在する "single-robot" に対する操作を「許可」にして設定することもできます．
 
-### シミュレータの実行
+これで単体ロボット向けシミュレータを実行する準備が整いました！  
+Unityアプリのウィンドウの左上にある「開始」をクリックしてください．ターミナルAではathrillが自動起動されて制御プログラムの実行ログが出力されます．Unityアプリではロボットと外部環境の振る舞いが可視的に表示されます．
 
-ターミナルB（Dockerコンテナ内）で，EV3RTのサンプルアプリを実行します．
-
-```
-~/workspace# bash start-athrill.bash base_practice_1
-```
-
-ターミナルCで起動したUnityアプリのウィンドウの「開始」をクリックしてください．
-
-以下の動作例は，左上が箱庭アセット・プロキシの起動しているターミナルA，左下がAthrillの実行ログ出力と操作を行えるターミナルB，右上がUnityを実行するターミナルCで右下がUnityアプリのウィンドウです．
+### 動作例
 
 ![動作例](https://github.com/toppers/hakoniwa/raw/web/static/img/prototypes/modelAdemo.gif)
+
+この動画の各ウィンドウは，それぞれ次の通り対応しています．
+
+- 左上：ターミナルA
+  - Dockerコンテナの立ち上げと箱庭アセット・プロキシの起動
+  - athrillの自動起動とログの出力
+- 左下：ターミナルB
+  - Dockerコンテナ内でのBashプロセスの実行
+  - マイコン側制御プログラムのビルド
+- 右上：ターミナルC
+  - Unityアプリの起動
+- 右下：Unityアプリのウィンドウ
+
+## 制御プログラムの編集とシミュレーションの再実行
+
+例題の `base_practice_1` では，黒色ラインのコースをトレースしながら，コース上の青色ブロックを前方アームで掴んで青色ゾーンまで運ぶというシナリオが実装されています．
+
+制御プログラムのソースコードは `./sdk/workspace/base_practice_1` にあります．Windowsのエクスプローラーからは `\\wsl$\Ubuntu-20.04\<WSL2内での本リポジトリのgit clone先>\sdk\workspace\base_practice_1` でアクセスして編集することができます．
+
+Dockerコンテナに入っているターミナルBでは，次のコマンドで制御プログラムの再コンパイルができます．
+
+```
+~/workspace# bash rebuild.bash base_practice_1
+```
+
+Unityアプリのウィンドウの「停止」でシミュレーションの停止，次の「リセット」で再起動できます．その後，「開始」で改めてシミュレーションを開始して，制御プログラムの編集内容の結果を確認することができます．
 
 ## Contributing
 
@@ -154,7 +173,7 @@ $ bash start-unity.bash single-robot eth0
 - [ ] mrubyアプリ向けの環境構築＆使用方法 [#6](https://github.com/toppers/hakoniwa-single_robot/issues/6)
 - [ ] macOS, Ubuntuネイティブ環境向けの環境構築＆使用方法 [#7](https://github.com/toppers/hakoniwa-single_robot/issues/7)
 - [ ] mmap版の使用方法 [#8](https://github.com/toppers/hakoniwa-single_robot/issues/8)
-- [ ] 「Athrillとロボット間の通信パケットのビジュアライズ」の動作確認 [#14](https://github.com/toppers/hakoniwa-single_robot/issues/14)
+- [ ] 「athrillとロボット間の通信パケットのビジュアライズ」の動作確認 [#14](https://github.com/toppers/hakoniwa-single_robot/issues/14)
 - [ ] ロボットやコース環境のカスタマイズ方法の説明の追加 [#15](https://github.com/toppers/hakoniwa-single_robot/issues/15)
 - [ ] READMEの英語化 [#16](https://github.com/toppers/hakoniwa-single_robot/issues/16)
 

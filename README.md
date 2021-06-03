@@ -2,7 +2,7 @@
 
 [TOPPERSプロジェクト箱庭WG](https://toppers.github.io/hakoniwa)では，IoT／クラウドロボティクス時代の仮想シミュレーション環境である『箱庭』の研究開発を進めています．本活動での狙いやコンセプトを実証するために，プロトタイプモデルを実装してひろく公開しています．
 
-本リポジトリでは，プロトタイプモデルのひとつである[「単体ロボット向けシミュレータ」](https://toppers.github.io/hakoniwa/prototypes/single-robot/)について，WSL 2/Dockerを用いて最小の構成と手順で試行できる実行環境を提供しています．本プロトタイプモデルでは，[ETロボコン](https://www.etrobo.jp/)を題材としており，組込みマイコンシミュレータ[athrill](https://github.com/toppers/athrill)上での制御プログラムの振る舞いを，Unity上でのロボット上の挙動と連携させて検証を進めることができます．
+本リポジトリでは，プロトタイプモデルのひとつである[「単体ロボット向けシミュレータ」](https://toppers.github.io/hakoniwa/prototypes/single-robot/)について，WSL 2とDockerを用いて最小の構成と手順で試行できる実行環境を提供しています．本プロトタイプモデルでは，[ETロボコン](https://www.etrobo.jp/)を題材としており，組込みマイコンシミュレータ[athrill](https://github.com/toppers/athrill)上での制御プログラムの振る舞いを，Unity上でのロボット上の挙動と連携させて検証を進めることができます．
 
 ![](https://toppers.github.io/hakoniwa/img/prototypes/modelA.png)
 

@@ -179,6 +179,13 @@ Unityアプリのウィンドウの「停止」でシミュレーションの停
 - [ ] ロボットやコース環境のカスタマイズ方法の説明の追加 [#15](https://github.com/toppers/hakoniwa-single_robot/issues/15)
 - [ ] READMEの英語化 [#16](https://github.com/toppers/hakoniwa-single_robot/issues/16)
 
+## 謝辞
+
+LEGO Mindstorms EV3のUnityパッケージの設計と作成にあたっては，宝塚大学 東京メディア芸術学部 吉岡章夫准教授および学部生の杉﨑涼志さん，木村明美さん，千葉純平さんにご協力いただきました．
+
+HackEVのUnityアセットは，ETロボコン実行委員会より提供いただいたデータを基に作成しています．実行委員会の皆さまに深く感謝いたします．  
+ただし本アセットはETロボコンの本番環境とは異なりますので，大会に参加予定の方はご注意ください．また，本アセットは，個人利用または教育利用に限定してご利用ください．
+
 ## ライセンス
 
 [TOPPERSライセンス](https://www.toppers.jp/license.html)で公開しています．  

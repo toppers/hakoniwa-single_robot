@@ -8,111 +8,206 @@
             "name": "EV3RoboModel",
             "pdu_writer_names": [
                 "EV3RoboModel_Ev3SensorPdu",
-                "EV3RoboModel_RosTopicWriterPdu"
             ],
             "pdu_reader_names": [
                 "EV3RoboModel_Ev3ActuatorPdu",
             ]
         },
     ],
-    "outside_assets": [
-        {
-            "name": "Athrill",
-            "class_name": "Hakoniwa.PluggableAsset.Assets.Micon.EV3.Ev3MiconAssetController"
-        },
-    ],
+    "outside_assets": null,
     "pdu_writers": [
         {
             "name": "EV3RoboModel_Ev3SensorPdu",
-            "class_name": "Hakoniwa.PluggableAsset.Communication.Pdu.Ev3.Ev3PduWriter",
-            "conv_class_name" : "Hakoniwa.PluggableAsset.Communication.Pdu.Ev3.Ev3PduWriterProtobufConverter",
-        },
-        {
-            "name": "EV3RoboModel_RosTopicWriterPdu",
             "class_name": "Hakoniwa.PluggableAsset.Communication.Pdu.ROS.RosTopicPduWriter",
             "conv_class_name" : "Hakoniwa.PluggableAsset.Communication.Pdu.ROS.RosTopicPduWriterConverter",
-            "topic_message_name": "pos_rot",
-            "pdu_config_name": "MRosRot_pdu_config",
+            "topic_message_name": "sensor",
+            "pdu_config_name": "MSensor_pdu_config",
         },
     ],
     "pdu_readers": [
         {
             "name": "EV3RoboModel_Ev3ActuatorPdu",
-            "class_name": "Hakoniwa.PluggableAsset.Communication.Pdu.Ev3.Ev3PduReader",
-            "conv_class_name" : "Hakoniwa.PluggableAsset.Communication.Pdu.Ev3.Ev3PduReaderProtobufConverter"
+            "class_name": "Hakoniwa.PluggableAsset.Communication.Pdu.ROS.RosTopicPduReader",
+            "conv_class_name" : "Hakoniwa.PluggableAsset.Communication.Pdu.ROS.RosTopicPduReaderConverter",
+            "topic_message_name": "actuator",
+            "pdu_config_name": "MActuator_pdu_config",
         },
     ],
     "pdu_configs": [
         {
-            "pdu_config_name": "MRosRot_pdu_config",
+            "pdu_config_name": "MSensor_pdu_config",
             "fields": [
                 {
-                    "name": "pos_x",
-                    "type": "float",
+                    "name": "button",
+                    "type": "int8",
                 }, 
                 {
-                    "name": "pos_y",
-                    "type": "float",
+                    "name": "sensor_color0",
+                    "type": "uint32",
                 }, 
                 {
-                    "name": "pos_z",
-                    "type": "float",
+                    "name": "sensor_color1",
+                    "type": "uint32",
                 }, 
                 {
-                    "name": "rot_x",
-                    "type": "float",
+                    "name": "sensor_color2",
+                    "type": "uint32",
                 }, 
                 {
-                    "name": "rot_y",
-                    "type": "float",
+                    "name": "sensor_reflect0",
+                    "type": "uint32",
                 }, 
                 {
-                    "name": "rot_z",
-                    "type": "float",
+                    "name": "sensor_reflect1",
+                    "type": "uint32",
                 }, 
                 {
-                    "name": "rot_w",
-                    "type": "float",
+                    "name": "sensor_reflect2",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_rgb_r0",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_rgb_r1",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_rgb_r2",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_rgb_g0",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_rgb_g1",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_rgb_g2",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_rgb_b0",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_rgb_b1",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_rgb_b2",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "sensor_gyroscope",
+                    "type": "int32",
+                }, 
+                {
+                    "name": "gyro_degree",
+                    "type": "int32",
+                }, 
+                {
+                    "name": "gyro_degree_rate",
+                    "type": "int32",
+                }, 
+                {
+                    "name": "sensor_ultrasonic",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "touch_sensor0",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "touch_sensor1",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "motor_angle_a",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "motor_angle_b",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "motor_angle_c",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "gps_lat",
+                    "type": "float64",
+                }, 
+                {
+                    "name": "gps_lon",
+                    "type": "float64",
+                }, 
+            ],
+        },
+        {
+            "pdu_config_name": "MActuator_pdu_config",
+            "fields": [
+                {
+                    "name": "led",
+                    "type": "int32",
+                }, 
+                {
+                    "name": "motor_power_a",
+                    "type": "int32",
+                }, 
+                {
+                    "name": "motor_stop_a",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "motor_reset_angle_a",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "motor_power_b",
+                    "type": "int32",
+                }, 
+                {
+                    "name": "motor_stop_b",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "motor_reset_angle_b",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "motor_power_c",
+                    "type": "int32",
+                }, 
+                {
+                    "name": "motor_stop_c",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "motor_reset_angle_c",
+                    "type": "uint32",
+                }, 
+                {
+                    "name": "gyro_reset",
+                    "type": "int32",
                 }, 
             ],
         },
     ],
     "ros_topics": [
         {
-            "topic_message_name": "pos_rot",
-            "topic_type_name": "MRosRot",
+            "topic_message_name": "sensor",
+            "topic_type_name": "MSensor",
+        },
+        {
+            "topic_message_name": "actuator",
+            "topic_type_name": "MActuator",
         },
     ],
-    "udp_methods": [
-        {
-            "method_name": "UdpMethod1",
-            "ipaddr": "{{IFCONFIG_IPADDR}}",
-            "portno": 54002,
-            "iosize": 1024,
-            "is_read": false
-        },
-        {
-            "method_name": "UdpMethod2",
-            "ipaddr": "{{RESOLVE_IPADDR}}",
-            "portno": 54001,
-            "iosize": 1024,
-            "is_read": true
-        },
-        {
-            "method_name": "UdpMethod3",
-            "ipaddr": "{{IFCONFIG_IPADDR}}",
-            "portno": 54003,
-            "iosize": 1024,
-            "is_read": false
-        },
-        {
-            "method_name": "UdpMethod4",
-            "ipaddr": "{{IFCONFIG_IPADDR}}",
-            "portno": 54004,
-            "iosize": 1024,
-            "is_read": false
-        }
-    ],
+    "udp_methods": null,
     "mmap_methods": null,
     "ros_topic_method": 
     {
@@ -123,51 +218,26 @@
         {
             "name": "reader_connector1",
             "pdu_name": "EV3RoboModel_Ev3ActuatorPdu",
-            "method_name": "UdpMethod2"
+            "method_name": "ros_topic_io"
         },
     ],
     "writer_connectors": [
         {
             "name": "writer_connector1",
             "pdu_name": "EV3RoboModel_Ev3SensorPdu",
-            "method_name": "UdpMethod1"
-        },
-        {
-            "name": "writer_connector2",
-            "pdu_name": "EV3RoboModel_Ev3SensorPdu",
-            "method_name": "UdpMethod3"
-        },
-        {
-            "name": "writer_connector3",
-            "pdu_name": "EV3RoboModel_Ev3ActuatorPdu",
-            "method_name": "UdpMethod4"
-        },
-        {
-            "name": "writer_connector_ros",
-            "pdu_name": "EV3RoboModel_RosTopicWriterPdu",
             "method_name": "ros_topic_io"
-        }
+        },
     ],
     "pdu_channel_connectors": [
         {
-            "outside_asset_name": "Athrill",
-            "reader_connector_name": "reader_connector1",
+            "outside_asset_name": null,
+            "reader_connector_name": null,
             "writer_connector_name": "writer_connector1"
         },
         {
             "outside_asset_name": null,
-            "reader_connector_name": null,
-            "writer_connector_name": "writer_connector2"
-        },
-        {
-            "outside_asset_name": null,
-            "reader_connector_name": null,
-            "writer_connector_name": "writer_connector3"
-        },
-        {
-            "outside_asset_name": null,
-            "reader_connector_name": null,
-            "writer_connector_name": "writer_connector_ros"
+            "reader_connector_name": "reader_connector1",
+            "writer_connector_name": null
         },
     ]
 }

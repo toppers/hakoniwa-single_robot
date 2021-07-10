@@ -1,6 +1,6 @@
 #1/bin/bash
 
-HAKONIWA_CORE_PATH=../../../../hakoniwa-core
+HAKONIWA_CORE_PATH=../../../hakoniwa-core
 
 while [ 1 ]
 do

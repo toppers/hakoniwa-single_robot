@@ -7,10 +7,10 @@
         {
             "name": "RoboModel",
             "pdu_writer_names": [
-                "RoboModel_Ev3SensorPdu"
+                "RoboModel_ev3_sensorPdu"
             ],
             "pdu_reader_names": [
-                "RoboModel_Ev3ActuatorPdu",
+                "RoboModel_ev3_actuatorPdu",
             ]
         }
     ],
@@ -22,7 +22,7 @@
     ],
     "pdu_writers": [
         {
-            "name": "RoboModel_Ev3SensorPdu",
+            "name": "RoboModel_ev3_sensorPdu",
             "class_name": "Hakoniwa.PluggableAsset.Communication.Pdu.Ev3.Ev3PduWriter",
             "conv_class_name" : "Hakoniwa.PluggableAsset.Communication.Pdu.Ev3.Ev3PduWriterRawConverter",
             "pdu_config_name": "Ev3PduSensor",
@@ -30,7 +30,7 @@
     ],
     "pdu_readers": [
         {
-            "name": "RoboModel_Ev3ActuatorPdu",
+            "name": "RoboModel_ev3_actuatorPdu",
             "class_name": "Hakoniwa.PluggableAsset.Communication.Pdu.Ev3.Ev3PduReader",
             "conv_class_name" : "Hakoniwa.PluggableAsset.Communication.Pdu.Ev3.Ev3PduReaderRawConverter",
             "pdu_config_name": "Ev3PduAcuator",
@@ -84,14 +84,14 @@
     "reader_connectors": [
         {
             "name": "reader_connector1",
-            "pdu_name": "RoboModel_Ev3ActuatorPdu",
+            "pdu_name": "RoboModel_ev3_actuatorPdu",
             "method_name": "MmapMethod2"
         }
     ],
     "writer_connectors": [
         {
             "name": "writer_connector1",
-            "pdu_name": "RoboModel_Ev3SensorPdu",
+            "pdu_name": "RoboModel_ev3_sensorPdu",
             "method_name": "MmapMethod1"
         },
     ],

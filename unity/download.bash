@@ -31,7 +31,7 @@ else
     mkdir unity/assets/${PROJ_NAME}
 fi
 
-wget https://github.com/toppers/hakoniwa-Unity-HackEV/releases/download/v4.0/${BINARY_NAME}
+wget https://github.com/toppers/hakoniwa-Unity-Package/releases/download/hackev-v1.0.0/${BINARY_NAME}
 
 mv ${BINARY_NAME} unity/assets/${PROJ_NAME}/
 cd unity/assets/${PROJ_NAME}/

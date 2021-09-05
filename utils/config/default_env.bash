@@ -1,11 +1,5 @@
 #!/bin/bash
 
-export IFCONFIG_IPADDR=127.0.0.1
-export RESOLVE_IPADDR=127.0.0.1
-export TEMPLATE_PATH=utils/config/template
-export ATHRILL_DEVICE_PATH=$(cd ../athrill-device/device && pwd)
-export WORKDIR=`pwd`
-export BASH_TPL_ENGINE=utils/config/mo
 export CORE_PORTNO=50051
 export MMAP_IO_PATH=mmap
 
@@ -44,6 +38,13 @@ then
 		export IFCONFIG_IPADDR=`ifconfig | grep -A 1 ${ETHRER_ID} | grep inet | awk '{print $2}'`
 		export RESOLVE_IPADDR=`cat /etc/resolv.conf | grep nameserver | awk '{print $2}'`
 	fi
+else
+	export IFCONFIG_IPADDR=127.0.0.1
+	export RESOLVE_IPADDR=127.0.0.1
+	export TEMPLATE_PATH=utils/config/template
+	export ATHRILL_DEVICE_PATH=$(cd ../athrill-device/device && pwd)
+	export WORKDIR=`pwd`
+	export BASH_TPL_ENGINE=utils/config/mo
+	export CORE_PORTNO=50051
+	export MMAP_IO_PATH=mmap
 fi
-
-

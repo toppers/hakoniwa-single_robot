@@ -46,11 +46,11 @@ RUN mkdir -p /root/grpc-build && \
 ENV PATH /usr/local/grpc/bin:${PATH}
 
 RUN git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-ENV PATH ${HOME}/.rbenv/bin:${PATH}
+ENV PATH /root/.rbenv/bin:${PATH}
 RUN git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-RUN ${HOME}/.rbenv/bin/rbenv install  2.6.5
-RUN ${HOME}/.rbenv/bin/rbenv global  2.6.5
-ENV PATH ${HOME}/.rbenv/versions/2.6.5/bin:${PATH}
+RUN /root/.rbenv/bin/rbenv install  2.6.5
+RUN /root/.rbenv/bin/rbenv global  2.6.5
+ENV PATH /root/.rbenv/versions/2.6.5/bin:${PATH}
 
 WORKDIR /root
 RUN wget https://github.com/toppers/athrill-gcc-v850e2m/releases/download/v1.1/athrill-gcc-package.tar.gz 

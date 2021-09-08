@@ -6,8 +6,8 @@ then
 	echo "Usage: $0 <apl-name>"
 	exit 1
 fi
-EV3RT_DIR=./sdk/workspace
+#EV3RT_DIR=./sdk/workspace
 APL_NAME=${1}
 
-cd ${EV3RT_DIR}
+#cd ${EV3RT_DIR}
 make -f ../common/Makefile.workspace img=${APL_NAME}

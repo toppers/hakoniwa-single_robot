@@ -125,10 +125,10 @@ Docker内でEV3RTのサンプルアプリ(base_practice_1)をビルドします�
 
 ### ターミナルCでの操作
 
-Unity側のシミュレータを起動してください(利用しているETHERがeth0, アプリケーション名が base_practice_1の場合)．
+Unity側のシミュレータを起動してください(アプリケーション名が base_practice_1の場合)．
 
 ```
-$ bash start-unity.bash single-robot eth0
+$ bash start-unity.bash single-robot
 ```
 
 初回の起動時には，Windows Defenderのファイアウォールに関する警告が表示されます．シミュレータ間の通信のために「アクセスを許可する」をクリックしてください．Windows Defender の[詳細設定]⇒[受信規則]に存在する "single-robot" に対する操作を「許可」にして設定することもできます．

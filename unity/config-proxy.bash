@@ -1,20 +1,25 @@
 #/bin/bash
 
-if [ $# -ne 2 -a $# -ne 3 ]
+
+if [ $# -ne 1 ]
 then
-	echo "Usage: $0 <unity-proj> <eth> [simtime_filepath]"
+	echo "Usage: $0 <unity-proj>"
 	exit 1
 fi
 
-UNITY_PRJ=${1}
-ETH=${2}
-if [ $# -eq 3 ]
+export UNITY_APLNAME=${1}
+UNITY_PRJ_PATH=unity/assets/${UNITY_APLNAME}
+
+if [ -d unity/assets/${UNITY_APLNAME}/Build/mmap ]
 then
-	TMPDIR=$(cd ${3} && pwd)
-	DIR=`echo "${TMPDIR}/unity.csv" | sed 's/\/mnt\/c\//C:\\\\\\\\/g' | sed 's/\//\\\\\\\\/g'`
-	export SYMTIME_MEASURE_FILEPATH=${DIR}
+	:
+else
+	mkdir -p unity/assets/${UNITY_APLNAME}/Build/mmap
+	dd if=/dev/zero of=unity/assets/${UNITY_APLNAME}/Build/mmap/athrill_mmap.bin bs=1k count=8
+	dd if=/dev/zero of=unity/assets/${UNITY_APLNAME}/Build/mmap/unity_mmap.bin bs=1k count=8
 fi
-UNITY_PRJ_PATH=unity/${UNITY_PRJ}
+
+source utils/config/env.bash
 
 if [ -d ${UNITY_PRJ_PATH} ]
 then
@@ -24,10 +29,11 @@ else
 	exit 1
 fi
 
-export IFCONFIG_IPADDR=`ifconfig | grep -A 1 ${ETH} | grep inet | awk '{print $2}'`
-export RESOLVE_IPADDR=`cat /etc/resolv.conf | grep nameserver | awk '{print $2}'`
-
-UNITY_CFG_TMPL=utils/config/config_proxy_udp_json.mo
+UNITY_CFG_TMPL=utils/config/template/hakoniwa/core/config_proxy_${COMM_TYPE}_json.mo
 bash utils/config/mo ${UNITY_CFG_TMPL} > core_config.json
 mv core_config.json ${UNITY_PRJ_PATH}/
+
+cp -rp utils/config/pdu ${UNITY_PRJ_PATH}/
+cp -rp utils/config/pdu ${UNITY_PRJ_PATH}/Build/
+cp ${UNITY_PRJ_PATH}/core_config.json ${UNITY_PRJ_PATH}/Build/
 

@@ -196,7 +196,7 @@ static void do_practice_2_second(void)
 {
     check_ultrasonic_sensor();
     check_color_sensor();
-    if (ultrasonic_value > 5) {
+    if (ultrasonic_value > 10) {
         do_foward(5);
         return;
     }

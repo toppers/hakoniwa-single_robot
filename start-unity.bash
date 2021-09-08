@@ -1,39 +1,31 @@
 #/bin/bash
 
-if [ $# -ne 2 -a $# -ne 3 ]
+if [ $# -ne 1 ]
 then
-	echo "Usage: $0 <unity-proj> <eth> [simtime_filepath]"
+	echo "Usage: $0 <unity-proj>"
 	exit 1
 fi
 
-UNITY_PRJ=${1}
-ETH=${2}
-UNITY_CFG_TMPL=utils/config/config_proxy_udp_json.mo
-if [ $# -eq 3 ]
-then
-	TMPDIR=$(cd ${3} && pwd)
-	DIR=`echo "${TMPDIR}/unity.csv" | sed 's/\/mnt\/c\//C:\\\\\\\\/g' | sed 's/\//\\\\\\\\/g'`
-	export SYMTIME_MEASURE_FILEPATH=${DIR}
-	UNITY_CFG_TMPL=utils/config/config_proxy_udp_dbg_json.mo
-fi
-UNITY_PRJ_PATH=unity/assets/${UNITY_PRJ}
+bash unity/config-proxy.bash ${1}
 
-if [ -d ${UNITY_PRJ_PATH} ]
+cp unity/assets/${1}/core_config.json unity/assets/${1}/Build/
+
+if [ -d unity/assets/${1}/Build/pdu ]
 then
 	:
 else
-	echo "ERROR: not found ${UNITY_PRJ_PATH}"
-	exit 1
+	cp -rp utils/config/pdu unity/assets/${1}/Build/
 fi
 
-export IFCONFIG_IPADDR=`ifconfig | grep -A 1 ${ETH} | grep inet | awk '{print $2}'`
-export RESOLVE_IPADDR=`cat /etc/resolv.conf | grep nameserver | awk '{print $2}'`
+if [ -d unity/assets/${1}/Build/mmap ]
+then
+	:
+else
+	mkdir unity/assets/${1}/Build/mmap
+	dd if=/dev/zero of=unity/assets/${1}/Build/mmap/athrill_mmap.bin bs=1k count=8
+	dd if=/dev/zero of=unity/assets/${1}/Build/mmap/unity_mmap.bin bs=1k count=8
+fi
 
+cd unity/assets/${1}/Build/
 
-bash utils/config/mo ${UNITY_CFG_TMPL} > core_config.json
-cp core_config.json ${UNITY_PRJ_PATH}/
-mv core_config.json ${UNITY_PRJ_PATH}/Build/
-
-cd ${UNITY_PRJ_PATH}/Build/
-
-./${UNITY_PRJ}.exe
+./${1}.exe

@@ -46,11 +46,11 @@ RUN mkdir -p /root/grpc-build && \
 ENV PATH /usr/local/grpc/bin:${PATH}
 
 RUN git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-RUN echo 'export PATH=${HOME}/.rbenv/bin:${PATH}' >> ~/.bashrc
+ENV PATH ${HOME}/.rbenv/bin:${PATH}
 RUN git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 RUN ${HOME}/.rbenv/bin/rbenv install  2.6.5
 RUN ${HOME}/.rbenv/bin/rbenv global  2.6.5
-RUN echo 'export PATH=${HOME}/.rbenv/versions/2.6.5/bin:${PATH}' >> ~/.bashrc
+ENV PATH ${HOME}/.rbenv/versions/2.6.5/bin:${PATH}
 
 WORKDIR /root
 RUN wget https://github.com/toppers/athrill-gcc-v850e2m/releases/download/v1.1/athrill-gcc-package.tar.gz 
@@ -60,13 +60,13 @@ WORKDIR /root/athrill-gcc-package
 RUN	tar xzvf athrill-gcc.tar.gz && \
 	rm -f athrill-gcc-package.tar.gz && \
 	rm -f *.tar.gz
-RUN echo 'export PATH=/root/athrill-gcc-package/usr/local/athrill-gcc/bin/:${PATH}' >> /root/.bashrc
+ENV PATH /root/athrill-gcc-package/usr/local/athrill-gcc/bin/:${PATH}
 
 WORKDIR /root
 RUN git clone --depth 1 https://github.com/toppers/athrill.git && \
 	cd athrill && \
 	git pull
-RUN echo 'export PATH=/root/athrill/bin/linux:${PATH}' >> ~/.bashrc
+ENV PATH /root/athrill/bin/linux:${PATH}
 
 WORKDIR /root
 RUN git clone --depth 1 https://github.com/toppers/athrill-target-v850e2m.git && \
@@ -88,7 +88,7 @@ RUN git clone --recursive https://github.com/toppers/hakoniwa-core.git && \
 WORKDIR /root/hakoniwa-core/impl/asset/client/build
 RUN bash build.bash cpp clean && \
 	bash build.bash cpp
-RUN echo 'export PATH=/root/hakoniwa-core/impl/asset/client/build/cpp:${PATH}' >> ~/.bashrc
+ENV PATH /root/hakoniwa-core/impl/asset/client/build/cpp:${PATH}
 
 WORKDIR /root
 RUN git clone --depth 1 https://github.com/toppers/athrill-device.git && \

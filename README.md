@@ -63,11 +63,10 @@ https://hub.docker.com/r/toppersjp/hakoniwa-single_robot
 現在の最新版は **v1.1.0** です．
 「[バージョン情報・更新履歴](/appendix/version.md)」も参照してください（バージョン番号は[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています）
 
-次のようにDockerを立ち上げて，imageをpullして展開してください．
+次のコマンドを実行してください．Dockerを立ち上げて，imageのpullと展開を行います．
 
 ```
-$ sudo service docker start 
-$ sudo docker pull toppersjp/hakoniwa-single_robot:v1.1.0
+$ bash docker/pull-image.bash
 ```
 
 \[開発者向け情報\] 手元でDocker imageを作成する場合は，下記のように実行してください．
@@ -78,7 +77,7 @@ $ bash docker/create-image.bash
 
 ### Unityバイナリのダウンロード
 
-以下のコマンドを実行して，single-robotのUnityシミュレータ(Unityバイナリ)をダウンロードしてください．
+次のコマンドを実行して，single-robotのUnityシミュレータ(Unityバイナリ)をダウンロードしてください．
 
 ```
 $ bash unity/download.bash single-robot WindowsBinary.zip
@@ -86,7 +85,10 @@ $ bash unity/download.bash single-robot WindowsBinary.zip
 
 ## シミュレータの実行手順
 
-`base_practice_1` を例題として実行手順を説明します．
+次の対象を例題として実行手順を説明します．
+
+* マイコン側の制御プログラム：`base_practice_1`
+* Unityアプリ：`single-robot`
 
 単体ロボット向けシミュレータの実行には，3台のターミナルを利用します．全てのターミナルで本リポジトリのディレクトリ（`hakoniwa-single_robot/`）に移動してください．
 
@@ -96,12 +98,14 @@ $ bash unity/download.bash single-robot WindowsBinary.zip
 
 ### ターミナルAでの操作
 
-athrillとUnityの通信と時間同期を行うためのプロキシサーバを設定し，Dockerコンテナを立ち上げます．
+次のコマンドを実行します．
 
 ```
 $ sudo service docker start
 $ bash run-proxy.bash base_practice_1
 ```
+
+athrillとUnityの通信と時間同期を行うためのプロキシサーバを設定し，Dockerコンテナを立ち上げています．
 
 bluetooth 通信を有効化する場合は，第二引数に `bt` を追加してください．
 
@@ -111,21 +115,17 @@ bluetooth 通信を有効化する場合は，第二引数に `bt` を追加し�
 
 ### ターミナルBでの操作
 
-ターミナルAで起動したDockerコンテナに入ります．
+次のコマンドを実行します．
 
 ```
-$ bash attach.bash
+$ bash build-app.bash base_practice_1
 ```
 
-Docker内でEV3RTのサンプルアプリ(base_practice_1)をビルドします．
-
-```
-~/workspace# bash clean_build.bash base_practice_1
-```
+ターミナルAで起動したDockerコンテナに入り，Docker内でEV3RTのサンプルアプリ(`base_practice_1`)をビルドしています．
 
 ### ターミナルCでの操作
 
-Unity側のシミュレータを起動してください(アプリケーション名が base_practice_1の場合)．
+Unity側のシミュレータを起動します．
 
 ```
 $ bash start-unity.bash single-robot
@@ -134,9 +134,10 @@ $ bash start-unity.bash single-robot
 初回の起動時には，Windows Defenderのファイアウォールに関する警告が表示されます．シミュレータ間の通信のために「アクセスを許可する」をクリックしてください．Windows Defender の[詳細設定]⇒[受信規則]に存在する "single-robot" に対する操作を「許可」にして設定することもできます．
 
 これで単体ロボット向けシミュレータを実行する準備が整いました！  
-Unityアプリのウィンドウの左上にある「開始」をクリックしてください．ターミナルAではathrillが自動起動されて制御プログラムの実行ログが出力されます．Unityアプリではロボットと外部環境の振る舞いが可視的に表示されます．
 
 ### 動作例
+
+Unityアプリのウィンドウの左上にある「開始」をクリックしてください．ターミナルAではathrillが自動起動されて制御プログラムの実行ログが出力されます．Unityアプリではロボットと外部環境の振る舞いが可視的に表示されます．
 
 ![動作例](https://github.com/toppers/hakoniwa/raw/web/static/img/prototypes/modelAdemo.gif)
 
@@ -146,7 +147,6 @@ Unityアプリのウィンドウの左上にある「開始」をクリックし
   - Dockerコンテナの立ち上げと箱庭アセット・プロキシの起動
   - athrillの自動起動とログの出力
 - 左下：ターミナルB
-  - Dockerコンテナ内でのBashプロセスの実行
   - マイコン側制御プログラムのビルド
 - 右上：ターミナルC
   - Unityアプリの起動
@@ -158,17 +158,17 @@ Unityアプリのウィンドウの左上にある「開始」をクリックし
 
 制御プログラムのソースコードは `./sdk/workspace/base_practice_1` にあります．Windowsのエクスプローラーからは `\\wsl$\Ubuntu-20.04\<WSL2内での本リポジトリのgit clone先>\sdk\workspace\base_practice_1` でアクセスして編集することができます．
 
-Dockerコンテナに入っているターミナルBでは，次のコマンドで制御プログラムの再コンパイルができます．
+ターミナルBで次のコマンドを実行し，制御プログラムを再コンパイルしてください（引数を制御プログラム名ではなく `clean` を指定すると，いわゆる `make clean` が実行されます）．
 
 ```
-~/workspace# bash rebuild.bash base_practice_1
+$ bash build-app.bash base_practice_1
 ```
 
 Unityアプリのウィンドウの「停止」でシミュレーションの停止，次の「リセット」で再起動できます．その後，「開始」で改めてシミュレーションを開始して，制御プログラムの編集内容の結果を確認することができます．
 
 ## Contributing
 
-本リポジトリで公開している「箱庭プロトタイプモデルA：単体ロボット向けシミュレータ」について，ご意見や改善の提案などをぜひ [Issues](https://github.com/toppers/hakoniwa-single_robot/issues) でお知らせください．[Pull Requests](https://github.com/toppers/hakoniwa-single_robot/pulls) も歓迎いたします．
+本リポジトリで公開している「箱庭プロトタイプモデルA：単体ロボット向けシミュレータ」について，ご意見や改善の提案などをぜひ [こちらのGitHub Discussions](https://github.com/toppers/hakoniwa/discussions/categories/idea-request) でお知らせください．改修提案の [Pull Requests](https://github.com/toppers/hakoniwa-single_robot/pulls) も歓迎いたします．
 
 ## TODO
 

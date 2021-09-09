@@ -132,6 +132,7 @@ uploadimg:
 
 clean:
 	rm -rf $(OBJDIR)
+	rm -f asp
 
 realclean: clean
 	rm -rf $(notdir $(OBJFILENAME)) uImage app $(LIBKERNELDIR)/libkernel.a

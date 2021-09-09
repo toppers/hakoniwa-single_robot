@@ -21,6 +21,17 @@
 
 箱庭アセットのバージョン情報は `utils/check_assets_version.bash` で確認できます．
 
+### v1.2.0 @ 2021/09/09
+
+- 箱庭コア機能をROS対応版にアップデート #23 #24
+- ユーザ操作性の向上 #27
+    - WSL 2シェル上のみ（Dockerコンテナ外）で制御プログラムをビルドできるように変更
+- 箱庭アセットとバージョン(commit hash)情報：v1.0.0からの更新分
+    - [athrill](https://github.com/toppers/athrill) / sha: [64641d258e6791596f9dcffe4e135cf21dd95d1d](https://github.com/toppers/athrill/tree/64641d258e6791596f9dcffe4e135cf21dd95d1d)
+    - [athrill-device](https://github.com/toppers/athrill-device) / sha: [f4713b1c353d2406fe7ce7c87577997730be1c4d](https://github.com/toppers/athrill-device/tree/f4713b1c353d2406fe7ce7c87577997730be1c4d)
+    - [hakoniwa-core](https://github.com/toppers/hakoniwa-core) / sha: [73251f562ac328e50f0ba10ce1ab6df2a71af5d7](https://github.com/toppers/hakoniwa-core/tree/73251f562ac328e50f0ba10ce1ab6df2a71af5d7)
+    - [athrill-gcc-v850e2m](https://github.com/toppers/athrill-gcc-v850e2m) / release [v1.1](https://github.com/toppers/athrill-gcc-v850e2m/releases/v1.1)
+
 ### v1.1.0 @ 2021/05/29
 
 - シミュレーション実行時の操作方法の変更 #18 #19 

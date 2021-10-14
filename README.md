@@ -80,7 +80,7 @@ $ bash docker/create-image.bash
 次のコマンドを実行して，single-robotのUnityシミュレータ(Unityバイナリ)をダウンロードしてください．
 
 ```
-$ bash unity/download.bash single-robot WindowsBinary.zip
+$ bash unity/download.bash single-robot  hackev-v1.0.0/WindowsBinary.zip
 ```
 
 ## シミュレータの実行手順

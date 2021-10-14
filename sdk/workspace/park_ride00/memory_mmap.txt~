@@ -1,0 +1,7 @@
+ROM, 0x00000000, 512
+RAM, 0x00200000, 512
+RAM, 0x05FF7000, 10240
+RAM, 0x07FF7000, 10240
+MMAP, 0x40000000, /mnt/c/hakoniwa/hakoniwa-Unity-HackEV/Installer/simulator/ev3rt-athrill-v850e2m/sdk/workspace/park_ride01/athrill_mmap.bin
+MMAP, 0x40010000, /mnt/c/hakoniwa/hakoniwa-Unity-HackEV/Installer/simulator/ev3rt-athrill-v850e2m/sdk/workspace/park_ride01/unity_mmap.bin
+

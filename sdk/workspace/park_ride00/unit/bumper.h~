@@ -1,0 +1,4 @@
+#include "app.h"
+
+extern void bumper_config(void);
+extern int bumper_is_pushed(void);

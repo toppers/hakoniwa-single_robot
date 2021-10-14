@@ -2,7 +2,7 @@
 
 if [ $# -ne 2 ]
 then
-    echo "Usage: $0 <unity-proj> <binary_name>"
+    echo "Usage: $0 <unity-proj> <revision/binary_name>"
     exit 1
 fi
 
@@ -13,7 +13,8 @@ then
 fi
 
 PROJ_NAME=${1}
-BINARY_NAME=${2}
+REPO_NAME=`echo ${2} | awk -F/ '{print $1}'`
+BINARY_NAME=`echo ${2} | awk -F/ '{print $2}'`
 
 if [ -d unity/assets/${PROJ_NAME} ]
 then
@@ -31,7 +32,7 @@ else
     mkdir unity/assets/${PROJ_NAME}
 fi
 
-wget https://github.com/toppers/hakoniwa-Unity-Package/releases/download/hackev-v1.0.0/${BINARY_NAME}
+wget https://github.com/toppers/hakoniwa-Unity-Package/releases/download/${REPO_NAME}/${BINARY_NAME}
 
 mv ${BINARY_NAME} unity/assets/${PROJ_NAME}/
 cd unity/assets/${PROJ_NAME}/

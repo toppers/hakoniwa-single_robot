@@ -1,0 +1,18 @@
+INCLUDE("app_common.cfg");
+INCLUDE("tecsgen.cfg");
+
+#include "app.h"
+#include "ev3.h"
+
+CRE_TSK( MAIN_TASK, { TA_NULL,  0, main_task,   MAIN_PRIORITY,   STACK_SIZE, NULL } );
+CRE_CYC(CYC0, { TA_STA, { TNFY_HANDLER, 0, cyc0 }, 50U * 1000, 1U *1000 });
+
+ATT_MOD("app.o");
+ATT_MOD("auto_park_ride.o");
+ATT_MOD("line_tracer.o");
+ATT_MOD("bumper.o");
+ATT_MOD("seat.o");
+ATT_MOD("walldetector.o");
+ATT_MOD("linemon.o");
+ATT_MOD("driver.o");
+ATT_MOD("timer.o");

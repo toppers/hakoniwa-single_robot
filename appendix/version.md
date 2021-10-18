@@ -24,11 +24,10 @@
 ### v1.2.1 @ 2021/10/18
 
 - 教育向けロボット対応追加 #29 
+- EV3COMのボタンセンサ機能の追加 [hakoniwa-core#33](https://github.com/toppers/hakoniwa-core/issues/33)
 - 箱庭アセットとバージョン(commit hash)情報：v1.2.0からの更新分
-    - [athrill](https://github.com/toppers/athrill) : 変更なし
     - [athrill-device](https://github.com/toppers/athrill-device) / sha: [93eeb22871ed6a24dfac6f376e826f27ee5f7c40](https://github.com/toppers/athrill-device/tree/93eeb22871ed6a24dfac6f376e826f27ee5f7c40)
     - [hakoniwa-core](https://github.com/toppers/hakoniwa-core) / sha: [a77918715cac333866ef7f611fc4a6683c016b1b](https://github.com/toppers/hakoniwa-core/tree/a77918715cac333866ef7f611fc4a6683c016b1b)
-    - [athrill-gcc-v850e2m](https://github.com/toppers/athrill-gcc-v850e2m) : 変更なし
 
 
 ### v1.2.0 @ 2021/09/09

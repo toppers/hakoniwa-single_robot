@@ -166,6 +166,17 @@ $ bash build-app.bash base_practice_1
 
 Unityアプリのウィンドウの「停止」でシミュレーションの停止，次の「リセット」で再起動できます．その後，「開始」で改めてシミュレーションを開始して，制御プログラムの編集内容の結果を確認することができます．
 
+## トラブルシューティング
+### Unityのシミュレータが灰色のまま動かない
+unity/assets/single-robot/Build/hakoniwa_core.logを確認する。
+ログに接続エラーがある場合、WSLのネットワークの設定をうまく読み込めていない場合があります。
+WSLのresolve.confを手動で設定しDNSを固定している場合、箱庭にゲートウェイのアドレスを読み込めません。
+自動設定に戻してターミナルＡの操作から再度実行してください。
+
+### ターミナルCからUnityを起動しても、接続できない
+FWが邪魔していることが多いです。ファイアウォールの設定(コントロール パネル/システムとセキュリティ/Windows Defender ファイアウォール/許可されたアプリ)
+からsingle-robot.exeを探し、プライベートとパブリックにチェックが入っているか確認してください。
+
 ## Contributing
 
 本リポジトリで公開している「箱庭プロトタイプモデルA：単体ロボット向けシミュレータ」について，ご意見や改善の提案などをぜひ [こちらのGitHub Discussions](https://github.com/toppers/hakoniwa/discussions/categories/idea-request) でお知らせください．改修提案の [Pull Requests](https://github.com/toppers/hakoniwa-single_robot/pulls) も歓迎いたします．

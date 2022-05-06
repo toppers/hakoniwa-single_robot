@@ -27,7 +27,7 @@ IMAGE_TAG=`cat appendix/latest_version.txt`
 DOCKER_IMAGE=${IMAGE_NAME}:${IMAGE_TAG}
 WORKSPACE_DIR=$(pwd)
 
-sudo docker run \
+docker run \
 	-v ${WORKSPACE_DIR}/sdk:/root/workspace/sdk \
 	-v ${WORKSPACE_DIR}/utils/config:/root/workspace/config \
 	-v ${WORKSPACE_DIR}/proxy:/root/workspace/proxy \

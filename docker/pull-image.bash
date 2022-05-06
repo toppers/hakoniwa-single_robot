@@ -1,6 +1,7 @@
 #!/bin/bash
 
-DOCKER_IMAGE=`cat docker/docker_image.txt`
+IMAGE_NAME=`cat docker/image_name.txt`
+IMAGE_TAG=`cat appendix/latest_version.txt`
+DOCKER_IMAGE=${IMAGE_NAME}:${IMAGE_TAG}
 
-sudo service docker start
-sudo docker pull ${DOCKER_IMAGE}
+docker pull ${DOCKER_IMAGE}

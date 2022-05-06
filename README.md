@@ -44,6 +44,22 @@ Docker Engineのインストールはやや手数が多いため，本リポジ�
 $ bash docker/install-docker.bash
 ```
 
+`$ service docker status` の結果が " * Docker is not running " の場合は，Dockerを起動してください．
+
+```
+$ sudo service docker start
+ * Starting Docker: docker                           [ OK ] 
+```
+
+また，ユーザが `docker` のグループに所属していることを想定しています．そうでない場合は，次のコマンドを実行してください．
+
+```
+$ sudo gpasswd -a $USER docker
+$ sudo service docker restart
+```
+
+上記のコマンド実行結果は，ターミナルに再ログインしてから有効となります．
+
 ### ifconfigのインストール
 
 WSL2に `ifconfig` をインストールしてください．

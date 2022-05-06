@@ -2,7 +2,7 @@
 
 ## バージョン番号の付与規則
 
-`vX.Y.Z` のようにバージョン番号を付与します．この番号は `docker/docker_image.txt` で管理しています．また，[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています．
+`vX.Y.Z` のようにバージョン番号を付与します．この番号は `appendix/latest_version.txt` で管理しています．また，[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています．
 
 各バージョン番号の更新は，次の規則で行います．
 

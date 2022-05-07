@@ -69,7 +69,7 @@ RUN git clone --depth 1 https://github.com/toppers/athrill.git && \
 ENV PATH /root/athrill/bin/linux:${PATH}
 
 WORKDIR /root
-RUN git clone --depth 1 https://github.com/toppers/athrill-target-v850e2m.git && \
+RUN git clone --recursive --depth 1 https://github.com/toppers/athrill-target-v850e2m.git && \
 	cd athrill-target-v850e2m && \
 	git pull
 WORKDIR /root/athrill-target-v850e2m/build_linux

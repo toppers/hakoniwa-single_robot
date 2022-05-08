@@ -14,16 +14,6 @@
 
 ## PC環境の準備
 
-### 本リポジトリのclone
-
-WSL2のターミナルで下記を実行して本リポジトリをcloneしてください．
-
-```
-$ git clone https://github.com/toppers/hakoniwa-single_robot.git
-```
-
-なおWSL2のファイルシステムはWindowsエクスプローラーからは `\\wsl$\Ubuntu-20.04` にてアクセス可能です．
-
 ### Docker Engineのインストール
 
 本シミュレータは，WSL2にDocker Engineがインストールされている必要があります．WSL2のターミナルで下記のコマンドの結果が同じように出力されていれば，すでにインストール済みです．
@@ -70,14 +60,24 @@ $ sudo apt install net-tools
 
 ## シミュレータの導入手順
 
+現在の最新版は **v1.2.1** です．  
+「[バージョン情報・更新履歴](/appendix/version.md)」も参照してください（バージョン番号は[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています）
+
+### 本リポジトリのclone
+
+WSL2のターミナルで下記を実行して本リポジトリをcloneしてください．
+
+```
+$ git clone -b v1.2.1 https://github.com/toppers/hakoniwa-single_robot.git
+```
+
+なおWSL2のファイルシステムはWindowsエクスプローラーからは `\\wsl$\Ubuntu-20.04` にてアクセス可能です．
+
 ### Dockerイメージの展開
 
 シミュレータの実行環境は，ビルド済みのDocker imageをDocker Hubにて公開しています．
 
 https://hub.docker.com/r/toppersjp/hakoniwa-single_robot
-
-現在の最新版は **v1.2.1** です．
-「[バージョン情報・更新履歴](/appendix/version.md)」も参照してください（バージョン番号は[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています）
 
 次のコマンドを実行してください．Dockerを立ち上げて，imageのpullと展開を行います．
 
@@ -85,11 +85,7 @@ https://hub.docker.com/r/toppersjp/hakoniwa-single_robot
 $ bash docker/pull-image.bash
 ```
 
-\[開発者向け情報\] 手元でDocker imageを作成する場合は，下記のように実行してください．
-
-```
-$ bash docker/create-image.bash
-```
+\[補足：開発者向け情報\] Dockerイメージの作成用に `docker/create-image.bash` があります．
 
 ### Unityバイナリのダウンロード
 

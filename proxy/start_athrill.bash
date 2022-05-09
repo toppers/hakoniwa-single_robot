@@ -23,16 +23,8 @@ trap signal_handler INT TERM
 
 APL_NAME=${1}
 
-if [ -d /root/athrill/bin ]
-then
-	ATHRILL_PATH=/root/athrill/bin/linux/athrill2
-	cd /root/workspace/sdk/workspace/${APL_NAME}
-else
-	ATHRILL_PATH=`which athrill2`
-	cd sdk/workspace/${APL_NAME}
-fi
-
-${ATHRILL_PATH} -t -1 -c1 -m memory.txt -d device_config.txt ../asp &
+cd /root/workspace/sdk/workspace/${APL_NAME}
+athrill2 -t -1 -c1 -m memory.txt -d device_config.txt ../asp &
 ATHRILL_PID=$!
 echo "ATHRILL_PID=$ATHRILL_PID"
 

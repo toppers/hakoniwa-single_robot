@@ -66,7 +66,6 @@ WORKDIR /root
 RUN git clone --depth 1 https://github.com/toppers/athrill.git && \
 	cd athrill && \
 	git pull
-ENV PATH /root/athrill/bin/linux:${PATH}
 
 WORKDIR /root
 RUN git clone --recursive --depth 1 https://github.com/toppers/athrill-target-v850e2m.git && \
@@ -75,6 +74,7 @@ RUN git clone --recursive --depth 1 https://github.com/toppers/athrill-target-v8
 WORKDIR /root/athrill-target-v850e2m/build_linux
 RUN make clean && \
 	make timer32=true serial_fifo_enable=true vdev_disable=true enable_bt_serial=true skip_clock_bugfix=true supress_detect_error=true etrobo_optimize=true reuse_port=true
+ENV PATH /root/athrill-target-v850e2m/athrill/bin/linux:${PATH}
 
 WORKDIR /root
 RUN git clone --depth 1 https://github.com/toppers/ev3rt-athrill-v850e2m.git && \

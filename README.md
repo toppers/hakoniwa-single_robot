@@ -60,7 +60,7 @@ $ sudo apt install net-tools
 
 ## シミュレータの導入手順
 
-現在の最新版は **v1.2.1** です．  
+現在の最新版は **v1.3.0** です．  
 「[バージョン情報・更新履歴](/appendix/version.md)」も参照してください（バージョン番号は[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています）
 
 ### 本リポジトリのclone
@@ -68,7 +68,7 @@ $ sudo apt install net-tools
 WSL2のターミナルで下記を実行して本リポジトリをcloneしてください．
 
 ```
-$ git clone -b v1.2.1 https://github.com/toppers/hakoniwa-single_robot.git
+$ git clone -b v1.3.0 https://github.com/toppers/hakoniwa-single_robot.git
 ```
 
 なおWSL2のファイルシステムはWindowsエクスプローラーからは `\\wsl$\Ubuntu-20.04` にてアクセス可能です．

@@ -21,6 +21,21 @@
 
 箱庭アセットのバージョン情報は `utils/check_assets_version.bash` で確認できます．
 
+### v1.3.0 @ 2022/05/09
+
+* トラブルシューティングを追記した by @s-hosoai in https://github.com/toppers/hakoniwa-single_robot/pull/31
+* change operation for Docker containers by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/32
+* athrill-target-v850e2mのサブモジュールに対応したDockerfileの変更 by @mitsut in https://github.com/toppers/hakoniwa-single_robot/pull/33
+* specify version on `git clone` by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/34
+
+- 箱庭アセットとバージョン(commit hash)情報：v1.2.1からの更新分
+    - [athrill](https://github.com/toppers/athrill) / sha: [056a7aa761ef48f67f2c1f6effef104c66fa3b8c](https://github.com/toppers/athrill/tree/056a7aa761ef48f67f2c1f6effef104c66fa3b8c)
+    - [athrill-target-v850e2m](https://github.com/toppers/athrill-target-v850e2m) / sha: [8b9f3acba3293755d8bf551b91c524c9d1046364](https://github.com/toppers/athrill-target-v850e2m/tree/8b9f3acba3293755d8bf551b91c524c9d1046364)
+    - [ev3rt-athrill-v850e2m](https://github.com/toppers/ev3rt-athrill-v850e2m) / sha: [eaa870b4e68413649d50e1b6d09d832b7de3af78](https://github.com/toppers/ev3rt-athrill-v850e2m/tree/eaa870b4e68413649d50e1b6d09d832b7de3af78)
+    - [hakoniwa-core](https://github.com/toppers/hakoniwa-core) / sha: [35c47fe42af58f37a4843e5e789e5f749acfbf0b](https://github.com/toppers/hakoniwa-core/tree/35c47fe42af58f37a4843e5e789e5f749acfbf0b)
+
+**Full Changelog**: https://github.com/toppers/hakoniwa-single_robot/compare/v1.2.1...v1.3.0
+
 ### v1.2.1 @ 2021/10/18
 
 - 教育向けロボット対応追加 #29 
@@ -28,7 +43,6 @@
 - 箱庭アセットとバージョン(commit hash)情報：v1.2.0からの更新分
     - [athrill-device](https://github.com/toppers/athrill-device) / sha: [93eeb22871ed6a24dfac6f376e826f27ee5f7c40](https://github.com/toppers/athrill-device/tree/93eeb22871ed6a24dfac6f376e826f27ee5f7c40)
     - [hakoniwa-core](https://github.com/toppers/hakoniwa-core) / sha: [a77918715cac333866ef7f611fc4a6683c016b1b](https://github.com/toppers/hakoniwa-core/tree/a77918715cac333866ef7f611fc4a6683c016b1b)
-
 
 ### v1.2.0 @ 2021/09/09
 

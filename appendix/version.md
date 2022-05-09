@@ -27,6 +27,7 @@
 * change operation for Docker containers by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/32
 * athrill-target-v850e2mのサブモジュールに対応したDockerfileの変更 by @mitsut in https://github.com/toppers/hakoniwa-single_robot/pull/33
 * specify version on `git clone` by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/34
+* change PATH to `athrill2` command to follow the latest changes of athrill-target-v850e2m by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/35
 
 - 箱庭アセットとバージョン(commit hash)情報：v1.2.1からの更新分
     - [athrill](https://github.com/toppers/athrill) / sha: [056a7aa761ef48f67f2c1f6effef104c66fa3b8c](https://github.com/toppers/athrill/tree/056a7aa761ef48f67f2c1f6effef104c66fa3b8c)

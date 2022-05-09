@@ -113,7 +113,6 @@ $ bash unity/download.bash single-robot  hackev-v1.0.0/WindowsBinary.zip
 次のコマンドを実行します．
 
 ```
-$ sudo service docker start
 $ bash run-proxy.bash base_practice_1
 ```
 

@@ -21,6 +21,12 @@
 
 箱庭アセットのバージョン情報は `utils/check_assets_version.bash` で確認できます．
 
+### v1.3.1 @ 2022/05/14
+
+* improve README to make it easier to copy command by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/36
+
+- 箱庭アセットとバージョン(commit hash)情報：v1.3.0から変更なし
+
 ### v1.3.0 @ 2022/05/09
 
 * トラブルシューティングを追記した by @s-hosoai in https://github.com/toppers/hakoniwa-single_robot/pull/31

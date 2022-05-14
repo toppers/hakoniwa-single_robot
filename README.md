@@ -22,14 +22,14 @@
 WSL2のターミナルで下記を実行して本リポジトリをcloneしてください．
 
 ```
-$ git clone -b v1.3.0 https://github.com/toppers/hakoniwa-single_robot.git
+git clone -b v1.3.0 https://github.com/toppers/hakoniwa-single_robot.git
 ```
 
 なおWSL2のファイルシステムはWindowsエクスプローラーからは `\\wsl$\Ubuntu-20.04` にてアクセス可能です．
 
 ### Docker Engineのインストール
 
-本シミュレータは，WSL2にDocker Engineがインストールされている必要があります．WSL2のターミナルで下記のコマンドの結果が同じように出力されていれば，すでにインストール済みです．
+本シミュレータは，WSL2にDocker Engineがインストールされている必要があります．WSL2のターミナルで下記のコマンドの結果が同じように出力されていれば，すでにインストール済みです（`$`から始まる行は実行するコマンドを示しています）．
 
 ```
 $ which docker
@@ -44,21 +44,27 @@ Docker Engineのインストールはやや手数が多いため，本リポジ�
 下記のように実行してください．
 
 ```
-$ bash docker/install-docker.bash
+bash docker/install-docker.bash
 ```
 
-`$ service docker status` の結果が " * Docker is not running " の場合は，Dockerを起動してください．
+`service docker status` の結果が " * Docker is not running " の場合は，Dockerを起動してください．
 
 ```
-$ sudo service docker start
+sudo service docker start
+```
+
+次のように出力されていれば，Dockerが起動しています．
+
+```
  * Starting Docker: docker                           [ OK ] 
 ```
 
 また，ユーザが `docker` のグループに所属していることを想定しています．そうでない場合は，次のコマンドを実行してください．
 
 ```
-$ sudo gpasswd -a $USER docker
-$ sudo service docker restart
+sudo gpasswd -a $USER docker
+sudo chgrp docker /var/run/docker.sock
+sudo service docker restart
 ```
 
 上記のコマンド実行結果は，ターミナルに再ログインしてから有効となります．
@@ -68,7 +74,7 @@ $ sudo service docker restart
 WSL2に `ifconfig` をインストールしてください．
 
 ```
-$ sudo apt install net-tools 
+sudo apt install net-tools 
 ```
 
 ## シミュレータの導入手順
@@ -82,7 +88,7 @@ https://hub.docker.com/r/toppersjp/hakoniwa-single_robot
 次のコマンドを実行してください．Dockerを立ち上げて，imageのpullと展開を行います．
 
 ```
-$ bash docker/pull-image.bash
+bash docker/pull-image.bash
 ```
 
 \[補足：開発者向け情報\] Dockerイメージの作成用に `docker/create-image.bash` があります．
@@ -92,7 +98,7 @@ $ bash docker/pull-image.bash
 次のコマンドを実行して，single-robotのUnityシミュレータ(Unityバイナリ)をダウンロードしてください．
 
 ```
-$ bash unity/download.bash single-robot  hackev-v1.0.0/WindowsBinary.zip
+bash unity/download.bash single-robot hackev-v1.0.0/WindowsBinary.zip
 ```
 
 ## シミュレータの実行手順
@@ -113,12 +119,12 @@ $ bash unity/download.bash single-robot  hackev-v1.0.0/WindowsBinary.zip
 次のコマンドを実行します．
 
 ```
-$ bash run-proxy.bash base_practice_1
+bash run-proxy.bash base_practice_1
 ```
 
 athrillとUnityの通信と時間同期を行うためのプロキシサーバを設定し，Dockerコンテナを立ち上げています．
 
-bluetooth 通信を有効化する場合は，第二引数に `bt` を追加してください．
+Bluetooth 通信を有効化する場合は，第二引数に `bt` を追加してください．
 
 開発対象のアプリケーション名 `base_practice_1` が `proxy/proxy_param.json` の `target_options:` で設定されていることを確認してください．
 
@@ -129,7 +135,7 @@ bluetooth 通信を有効化する場合は，第二引数に `bt` を追加し�
 次のコマンドを実行します．
 
 ```
-$ bash build-app.bash base_practice_1
+bash build-app.bash base_practice_1
 ```
 
 ターミナルAで起動したDockerコンテナに入り，Docker内でEV3RTのサンプルアプリ(`base_practice_1`)をビルドしています．
@@ -139,7 +145,7 @@ $ bash build-app.bash base_practice_1
 Unity側のシミュレータを起動します．
 
 ```
-$ bash start-unity.bash single-robot
+bash start-unity.bash single-robot
 ```
 
 初回の起動時には，Windows Defenderのファイアウォールに関する警告が表示されます．シミュレータ間の通信のために「アクセスを許可する」をクリックしてください．Windows Defender の[詳細設定]⇒[受信規則]に存在する "single-robot" に対する操作を「許可」にして設定することもできます．
@@ -172,7 +178,7 @@ Unityアプリのウィンドウの左上にある「開始」をクリックし
 ターミナルBで次のコマンドを実行し，制御プログラムを再コンパイルしてください（引数を制御プログラム名ではなく `clean` を指定すると，いわゆる `make clean` が実行されます）．
 
 ```
-$ bash build-app.bash base_practice_1
+bash build-app.bash base_practice_1
 ```
 
 Unityアプリのウィンドウの「停止」でシミュレーションの停止，次の「リセット」で再起動できます．その後，「開始」で改めてシミュレーションを開始して，制御プログラムの編集内容の結果を確認することができます．

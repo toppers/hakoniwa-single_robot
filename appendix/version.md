@@ -1,41 +1,46 @@
-# バージョン情報・更新履歴
+[English](version.md) | [日本語](version_jp.md) 
 
-## バージョン番号の付与規則
 
-`vX.Y.Z` のようにバージョン番号を付与します．この番号は `appendix/latest_version.txt` で管理しています．また，[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています．
+# Version & Updates
 
-各バージョン番号の更新は，次の規則で行います．
+## Rules of version numbering
+
+A version number is assigned, such as `vX.Y.Z`.
+This number is managed in `appendix/latest_version.txt`.
+In addition, [Git/GitHub tag/release](https://github.com/toppers/hakoniwa-single_robot/releases) and [Docker Hub tag number](https://hub.docker.com/ r/toppersjp/hakoniwa-single_robot/tags).
+
+Each version number is updated according to the following rules.
 
 - Major version (`X`): 
-    - 箱庭コア技術の新機能の導入
-    - 使用方法の大きな変更　など
+    - Introduction of new features in the core technology of Hakoniwa
+    - Major changes in usage, etc.
 - Minor version (`Y`): 
-    - 箱庭アセット技術（各リポジトリ）の更新
-    - 大幅な機能の修正
-    - シミュレータ本体の新たな機能の追加　など
+    - Update of Hakoniwa asset technology (repositories)
+    - Major feature fixes
+    - New features in the simulator core, etc.
 - Revision (`Z`): 
-    - 軽微な機能の修正・バグの対応
-    - ドキュメントの更新　など
+    - Minor fixes, bug fixes, etc.
+    - Documentation updates, etc.
 
-## 更新履歴
+## Update History
 
-箱庭アセットのバージョン情報は `utils/check_assets_version.bash` で確認できます．
+You can check the version information of Hakoniwa assets in `utils/check_assets_version.bash`.
 
 ### v1.3.1 @ 2022/05/14
 
 * improve README to make it easier to copy command by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/36
 
-- 箱庭アセットとバージョン(commit hash)情報：v1.3.0から変更なし
+- No change in Hakoniwa assets and version (commit hash) from v1.3.0
 
 ### v1.3.0 @ 2022/05/09
 
-* トラブルシューティングを追記した by @s-hosoai in https://github.com/toppers/hakoniwa-single_robot/pull/31
+* add troubleshooting. by @s-hosoai in https://github.com/toppers/hakoniwa-single_robot/pull/31
 * change operation for Docker containers by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/32
-* athrill-target-v850e2mのサブモジュールに対応したDockerfileの変更 by @mitsut in https://github.com/toppers/hakoniwa-single_robot/pull/33
+* change Dockerfile for athrill-target-v850e2m sub-module by @mitsut in https://github.com/toppers/hakoniwa-single_robot/pull/33
 * specify version on `git clone` by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/34
 * change PATH to `athrill2` command to follow the latest changes of athrill-target-v850e2m by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/35
 
-- 箱庭アセットとバージョン(commit hash)情報：v1.2.1からの更新分
+- Hakoniwa asset and version (commit hash) information: updated from v1.2.1
     - [athrill](https://github.com/toppers/athrill) / sha: [056a7aa761ef48f67f2c1f6effef104c66fa3b8c](https://github.com/toppers/athrill/tree/056a7aa761ef48f67f2c1f6effef104c66fa3b8c)
     - [athrill-target-v850e2m](https://github.com/toppers/athrill-target-v850e2m) / sha: [8b9f3acba3293755d8bf551b91c524c9d1046364](https://github.com/toppers/athrill-target-v850e2m/tree/8b9f3acba3293755d8bf551b91c524c9d1046364)
     - [ev3rt-athrill-v850e2m](https://github.com/toppers/ev3rt-athrill-v850e2m) / sha: [eaa870b4e68413649d50e1b6d09d832b7de3af78](https://github.com/toppers/ev3rt-athrill-v850e2m/tree/eaa870b4e68413649d50e1b6d09d832b7de3af78)
@@ -45,16 +50,16 @@
 
 ### v1.2.1 @ 2021/10/18
 
-- 教育向けロボット対応追加 #29 
-- EV3COMのボタンセンサ機能の追加 [hakoniwa-core#33](https://github.com/toppers/hakoniwa-core/issues/33)
-- 箱庭アセットとバージョン(commit hash)情報：v1.2.0からの更新分
+- Support of robots for educational use #29 
+- Add button sensor function for EV3COM [hakoniwa-core#33](https://github.com/toppers/hakoniwa-core/issues/33)
+- Hakoniwa asset and version (commit hash) information: updated from v1.2.0
     - [athrill-device](https://github.com/toppers/athrill-device) / sha: [93eeb22871ed6a24dfac6f376e826f27ee5f7c40](https://github.com/toppers/athrill-device/tree/93eeb22871ed6a24dfac6f376e826f27ee5f7c40)
     - [hakoniwa-core](https://github.com/toppers/hakoniwa-core) / sha: [a77918715cac333866ef7f611fc4a6683c016b1b](https://github.com/toppers/hakoniwa-core/tree/a77918715cac333866ef7f611fc4a6683c016b1b)
 
 ### v1.2.0 @ 2021/09/09
 
-- 箱庭コア機能をROS対応版にアップデート #23 #24
-- ユーザ操作性の向上 #27
+- Update Hakoniwa core functions to ROS-compatible version #23 #24
+- Improve usability #27
     - WSL 2シェル上のみ（Dockerコンテナ外）で制御プログラムをビルドできるように変更
 - 箱庭アセットとバージョン(commit hash)情報：v1.0.0からの更新分
     - [athrill](https://github.com/toppers/athrill) / sha: [64641d258e6791596f9dcffe4e135cf21dd95d1d](https://github.com/toppers/athrill/tree/64641d258e6791596f9dcffe4e135cf21dd95d1d)

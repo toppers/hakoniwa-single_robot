@@ -1,65 +1,68 @@
-# 箱庭プロトタイプモデルA：単体ロボット向けシミュレータ
+[English](README.md) | [日本語](README_jp.md) 
 
-[TOPPERSプロジェクト箱庭WG](https://toppers.github.io/hakoniwa)では，IoT／クラウドロボティクス時代の仮想シミュレーション環境である『箱庭』の研究開発を進めています．本活動での狙いやコンセプトを実証するために，プロトタイプモデルを実装してひろく公開しています．
+# Hakoniwa Prototype Model A: Simulator for a single robot
 
-本リポジトリでは，プロトタイプモデルのひとつである[「単体ロボット向けシミュレータ」](https://toppers.github.io/hakoniwa/prototypes/single-robot/)について，WSL 2とDockerを用いて最小の構成と手順で試行できる実行環境を提供しています．本プロトタイプモデルでは，[ETロボコン](https://www.etrobo.jp/)を題材としており，組込みマイコンシミュレータ[athrill](https://github.com/toppers/athrill)上での制御プログラムの振る舞いを，Unity上でのロボット上の挙動と連携させて検証を進めることができます．
+The [TOPPERS Project Hokoniwa WG](https://toppers.github.io/hakoniwa/en) is working on the R&D of "Hakoniwa," a virtual simulation environment for the age of IoT/Cloud Robotics. To demonstrate the goals and concepts of this activity, we have implemented a prototype model and made it widely available to the public.
+
+This repository provides an execution environment for one of the prototype models, ["simulator for stand-alone robots"](https://toppers.github.io/hakoniwa/prototypes/single-robot/), using WSL 2 and Docker with minimal configuration and procedures.
+This prototype model is designed with [ET Robocon](https://www.etrobo.jp/) and allows the user to verify the collaboration between the operation of the control program on the embedded microcomputer simulator [athrill](https://github.com/toppers/athrill) and the robot control operation on Unity. 
 
 ![](https://toppers.github.io/hakoniwa/img/prototypes/modelA.png)
 
-## 想定するPC環境
+## Requirements
 
-* WSL 2/Ubuntu 20.04 LTS（以降，WSL2）の動作するWindows 10 PC
-  * WSL2のインストール方法は「[Windows 10 に WSL をインストールする | Microsoft Docs](https://docs.microsoft.com/ja-jp/windows/wsl/install-win10)」などを参考にしてください．
-  * 本手順の操作は，すべてWSL2のターミナル上（またはdocker container内）で行います．
+* Windows 10 PC running WSL 2/Ubuntu 20.04 LTS (after this, referred to as WSL2)
+  * For details on how to install WSL2, please refer to "[Installing WSL on Windows 10 | Microsoft Docs](https://docs.microsoft.com/ja-jp/windows/wsl/install-win10)" etc.
+  * All operations in this procedure are performed on the WSL2 terminal (or in the docker container).
 
-## PC環境の準備
+## Preparations
 
-### 本リポジトリのclone
+### Clone this repository
 
-現在の最新版は **v1.3.1** です．  
-「[バージョン情報・更新履歴](/appendix/version.md)」も参照してください（バージョン番号は[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています）
+The latest version is **v1.3.1**.  
+See also "[version information / update history](/appendix/version.md)" (the version number corresponds to [tag/release in Git/GitHub](https://github.com/toppers/hakoniwa-single_robot/ releases](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags) and [Docker Hub tag number](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags))
 
-WSL2のターミナルで下記を実行して本リポジトリをcloneしてください．
+Clone this repository using the following command in the terminal of WSL2.
 
 ```
 git clone -b v1.3.1 https://github.com/toppers/hakoniwa-single_robot.git
 ```
+Note: that the WSL2 file system can be accessed from Windows Explorer as `\\wsl$\Ubuntu-20.04` 
 
-なおWSL2のファイルシステムはWindowsエクスプローラーからは `\\wsl$\Ubuntu-20.04` にてアクセス可能です．
+### Install Docker Engine
 
-### Docker Engineのインストール
-
-本シミュレータは，WSL2にDocker Engineがインストールされている必要があります．WSL2のターミナルで下記のコマンドの結果が同じように出力されていれば，すでにインストール済みです（`$`から始まる行は実行するコマンドを示しています）．
+The simulator requires the Docker Engine to be installed on WSL2.
+If the following command outputs the same result in the terminal of WSL2, it has already been installed (the line starting with `$` indicates the command to be executed).
 
 ```
 $ which docker
 /usr/bin/docker
 $ service --status-all |& grep docker
- [ + ]  docker   # または " [ - ]  docker "
+ [ + ]  docker   # or " [ - ]  docker "
 $ service docker status
- * Docker is running   # または " * Docker is not running "
+ * Docker is running   # or " * Docker is not running "
 ```
 
-Docker Engineのインストールはやや手数が多いため，本リポジトリの [`docker/install-docker.bash`](/docker/install-docker.bash) にまとめてあります（「[Install Docker Engine on Ubuntu | Docker Documentation](https://docs.docker.com/engine/install/ubuntu/)」を参考に作成しました）．  
-下記のように実行してください．
+Since the Docker Engine installation procedure is a bit complicated, we summarized it in [`docker/install-docker.bash`](/docker/install-docker.bash) in this repository (see [Install Docker Engine on Ubuntu | Docker Documentation](https://docs.docker.com/engine/install/ubuntu/)").  
+Execute as follows.
 
 ```
 bash docker/install-docker.bash
 ```
 
-`service docker status` の結果が " * Docker is not running " の場合は，Dockerを起動してください．
+If the `service docker status` is ` * Docker is not running `, start Docker.
 
 ```
 sudo service docker start
 ```
 
-次のように出力されていれば，Dockerが起動しています．
+If the output is as follows, Docker is running.
 
 ```
  * Starting Docker: docker                           [ OK ] 
 ```
 
-また，ユーザが `docker` のグループに所属していることを想定しています．そうでない場合は，次のコマンドを実行してください．
+This procedure requires the user to be a member of the `docker` group. Otherwise, execute the following command.
 
 ```
 sudo gpasswd -a $USER docker
@@ -67,154 +70,159 @@ sudo chgrp docker /var/run/docker.sock
 sudo service docker restart
 ```
 
-上記のコマンド実行結果は，ターミナルに再ログインしてから有効となります．
+The results of the above command execution will take effect after you re-login to the terminal.
 
-### ifconfigのインストール
+### Install ifconfig
 
-WSL2に `ifconfig` をインストールしてください．
+Install `ifconfig` on WSL2.
 
 ```
 sudo apt install net-tools 
 ```
 
-## シミュレータの導入手順
+## Simulator Installation Procedure
 
-### Dockerイメージの展開
+### Deploy Docker images
 
-シミュレータの実行環境は，ビルド済みのDocker imageをDocker Hubにて公開しています．
+The simulator execution environment is available as a pre-built Docker image on the Docker Hub.
 
 https://hub.docker.com/r/toppersjp/hakoniwa-single_robot
 
-次のコマンドを実行してください．Dockerを立ち上げて，imageのpullと展開を行います．
+Execute the following command to launch Docker, pull and deploy the image.
 
 ```
 bash docker/pull-image.bash
 ```
 
-\[補足：開発者向け情報\] Dockerイメージの作成用に `docker/create-image.bash` があります．
+\[Tips for Developer\] There is a `docker/create-image.bash` for creating Docker images.
 
-### Unityバイナリのダウンロード
+### Download Unity Binaries
 
-次のコマンドを実行して，single-robotのUnityシミュレータ(Unityバイナリ)をダウンロードしてください．
+Download the single-robot Unity simulator (Unity binary) with the following command
 
 ```
 bash unity/download.bash single-robot hackev-v1.0.0/WindowsBinary.zip
 ```
 
-## シミュレータの実行手順
+## Simulator Running Procedure
 
-次の対象を例題として実行手順を説明します．
+I will illustrate the procedure with the following example.
 
-* マイコン側の制御プログラム：`base_practice_1`
-* Unityアプリ：`single-robot`
+* Control program of microcontroller: `base_practice_1`
+* Unity Application: `single-robot`
 
-単体ロボット向けシミュレータの実行には，3台のターミナルを利用します．全てのターミナルで本リポジトリのディレクトリ（`hakoniwa-single_robot/`）に移動してください．
+We recommend using three terminals to run this simulator.
+Please change to the directory of this repository (`hakoniwa-single_robot/`) on all terminals.
 
-* ターミナルA：箱庭アセット・プロキシ起動用
-* ターミナルB：マイコン側の制御プログラムのビルド用
-* ターミナルC：Unity側のシミュレーション実行用
+* Terminal A: For activating Hakoniwa assets and proxies
+* Terminal B: For building control programs on the microcontroller
+* Terminal C: For executing simulation on Unity
 
-### ターミナルAでの操作
+### Operations on Terminal A
 
-次のコマンドを実行します．
+Execute the following command.
 
 ```
 bash run-proxy.bash base_practice_1
 ```
 
-athrillとUnityの通信と時間同期を行うためのプロキシサーバを設定し，Dockerコンテナを立ち上げています．
+This command sets up a proxy server for communication and time synchronization between athrill and Unity and launches a Docker container.
 
-Bluetooth 通信を有効化する場合は，第二引数に `bt` を追加してください．
+If you want to enable Bluetooth communication, add `bt` as the second argument.
 
-開発対象のアプリケーション名 `base_practice_1` が `proxy/proxy_param.json` の `target_options:` で設定されていることを確認してください．
+Make sure that the application name `base_practice_1` is set in `target_options:` in `proxy/proxy_param.json`.
 
-起動後にはターミナル上に `14: failed to connect to all addresses` 等のエラーログが連続出力されますが，無視してください（シミュレータの接続待ちに関するもので，他ターミナル上での各シミュレータの実行後に正常になります）．
+After startup, error logs such as `14: failed to connect to all addresses` will appear continuously on the terminal. Still, please ignore them (they are related to waiting for simulator contacts and will disappear after the operation on another terminal).
 
-### ターミナルBでの操作
+### Operations on Terminal B
 
-次のコマンドを実行します．
+Execute the following command
 
 ```
 bash build-app.bash base_practice_1
 ```
 
-ターミナルAで起動したDockerコンテナに入り，Docker内でEV3RTのサンプルアプリ(`base_practice_1`)をビルドしています．
+Enter the Docker container started in Terminal A and build the EV3RT sample app (`base_practice_1`) in Docker.
 
-### ターミナルCでの操作
+### Operations on Terminal C
 
-Unity側のシミュレータを起動します．
+Start the simulator on the Unity
 
 ```
 bash start-unity.bash single-robot
 ```
 
-初回の起動時には，Windows Defenderのファイアウォールに関する警告が表示されます．シミュレータ間の通信のために「アクセスを許可する」をクリックしてください．Windows Defender の[詳細設定]⇒[受信規則]に存在する "single-robot" に対する操作を「許可」にして設定することもできます．
+A warning about the Windows Defender firewall will appear at the first startup.
+Click on "Allow access" for communication between simulators; you can also set the operation to "Allow" for "single-robot" that exists in [Advanced] ⇒ [Receiving Rules] of Windows Defender.
 
-これで単体ロボット向けシミュレータを実行する準備が整いました！  
+Now you are ready to start the simulator!
 
-### 動作例
+### Running
 
-Unityアプリのウィンドウの左上にある「開始」をクリックしてください．ターミナルAではathrillが自動起動されて制御プログラムの実行ログが出力されます．Unityアプリではロボットと外部環境の振る舞いが可視的に表示されます．
+Click "Start" in the upper left corner of the Unity app window.
+You should see a log of athrill automatically starting and the control program executing in Terminal A.
+You will also see the robot's behavior and the external environment displayed visually in the Unity app.
 
 ![動作例](https://github.com/toppers/hakoniwa/raw/web/static/img/prototypes/modelAdemo.gif)
 
-この動画の各ウィンドウは，それぞれ次の通り対応しています．
+Each window in this video corresponds to the following.
 
-- 左上：ターミナルA
-  - Dockerコンテナの立ち上げと箱庭アセット・プロキシの起動
-  - athrillの自動起動とログの出力
-- 左下：ターミナルB
-  - マイコン側制御プログラムのビルド
-- 右上：ターミナルC
-  - Unityアプリの起動
-- 右下：Unityアプリのウィンドウ
+- Top left: Terminal A
+  - Launching Docker containers and the Hakoniwa Asset Proxy
+  - Automatic startup of athrill and log output
+- Bottom left: Terminal B
+  - Build microcontroller control program
+- Upper right: Terminal C
+  - Launching Unity app
+- Lower right: Unity app window
 
-## 制御プログラムの編集とシミュレーションの再実行
+## Edit control program and re-run simulation
 
-例題の `base_practice_1` では，黒色ラインのコースをトレースしながら，コース上の青色ブロックを前方アームで掴んで青色ゾーンまで運ぶというシナリオが実装されています．
+The example `base_practice_1` implements a scenario where the robot traces a black line course, grabs blue blocks on the trail with its forward arm, and carries them to the blue zone.
 
-制御プログラムのソースコードは `./sdk/workspace/base_practice_1` にあります．Windowsのエクスプローラーからは `\\wsl$\Ubuntu-20.04\<WSL2内での本リポジトリのgit clone先>\sdk\workspace\base_practice_1` でアクセスして編集することができます．
+The source code of the control program is in `. /sdk/workspace/base_practice_1`.You can access and edit it using Windows Explorer at `\\wsl$\Ubuntu-20.04\<the git clone location of this repository in WSL2>\sdk\workspace\base_practice_1`.
 
-ターミナルBで次のコマンドを実行し，制御プログラムを再コンパイルしてください（引数を制御プログラム名ではなく `clean` を指定すると，いわゆる `make clean` が実行されます）．
+Recompile the control program in Terminal B with the following command (if you specify the argument `clean` instead of the control program name, the so-called `make clean` will be executed).
 
 ```
 bash build-app.bash base_practice_1
 ```
 
-Unityアプリのウィンドウの「停止」でシミュレーションの停止，次の「リセット」で再起動できます．その後，「開始」で改めてシミュレーションを開始して，制御プログラムの編集内容の結果を確認することができます．
+You can stop the simulation by pressing "Stop" and restart by pressing "Reset" in the Unity app window.
+After that, you can start the simulation again by pressing "Start" to check the results of your control program edits.
 
-## トラブルシューティング
-### Unityのシミュレータが灰色のまま動かない
-unity/assets/single-robot/Build/hakoniwa_core.logを確認する。
-ログに接続エラーがある場合、WSLのネットワークの設定をうまく読み込めていない場合があります。
-WSLのresolve.confを手動で設定しDNSを固定している場合、箱庭にゲートウェイのアドレスを読み込めません。
-自動設定に戻してターミナルＡの操作から再度実行してください。
+## Troubleshooting
+### Unity simulator is stuck in gray.
+Check unity/assets/single-robot/Build/hakoniwa_core.log.
+If you see connection errors in the log, the WSL network settings may be a problem with WSL's network settings.
+If you have manually set up WSL's resolve.conf and fixed DNS, Hakoniwa cannot read the gateway address.
+Please revert to the automatic settings and rerun the operation from Terminal A.
 
-### ターミナルCからUnityを起動しても、接続できない
-FWが邪魔していることが多いです。ファイアウォールの設定(コントロール パネル/システムとセキュリティ/Windows Defender ファイアウォール/許可されたアプリ)
-からsingle-robot.exeを探し、プライベートとパブリックにチェックが入っているか確認してください。
+### Cannot connect to Unity after starting it from Terminal C
+FW may be interfering.
+Check Firewall settings o(Control Panel/System and Security/Windows Defender Firewall/Allowed Apps) and make sure single-robot.exe is private and public.
 
 ## Contributing
 
-本リポジトリで公開している「箱庭プロトタイプモデルA：単体ロボット向けシミュレータ」について，ご意見や改善の提案などをぜひ [こちらのGitHub Discussions](https://github.com/toppers/hakoniwa/discussions/categories/idea-request) でお知らせください．改修提案の [Pull Requests](https://github.com/toppers/hakoniwa-single_robot/pulls) も歓迎いたします．
+Please let us know your comments and suggestions for improvement of "Hakoniwa Prototype Model A: Simulator for Single Robot" in this repository [GitHub Discussions](https://github.com/toppers/hakoniwa/discussions/categories/idea-request). We also welcome [Pull Requests](https://github.com/toppers/hakoniwa-single_robot/pulls) for improvement suggestions.
 
 ## TODO
 
-- [ ] mrubyアプリ向けの環境構築＆使用方法 [#6](https://github.com/toppers/hakoniwa-single_robot/issues/6)
-- [ ] macOS, Ubuntuネイティブ環境向けの環境構築＆使用方法 [#7](https://github.com/toppers/hakoniwa-single_robot/issues/7)
-- [ ] mmap版の使用方法 [#8](https://github.com/toppers/hakoniwa-single_robot/issues/8)
-- [ ] 「athrillとロボット間の通信パケットのビジュアライズ」の動作確認 [#14](https://github.com/toppers/hakoniwa-single_robot/issues/14)
-- [ ] ロボットやコース環境のカスタマイズ方法の説明の追加 [#15](https://github.com/toppers/hakoniwa-single_robot/issues/15)
-- [ ] READMEの英語化 [#16](https://github.com/toppers/hakoniwa-single_robot/issues/16)
+- [ ] How to build & use the environment for mruby applications [#6](https://github.com/toppers/hakoniwa-single_robot/issues/6)
+- [ ] How to build & use environment for macOS, Ubuntu native environment [#7](https://github.com/toppers/hakoniwa-single_robot/issues/7)
+- [ ] How to use the mmap version [#8](https://github.com/toppers/hakoniwa-single_robot/issues/8)
+- [ ] Confirming the operation of "visualization of communication packets between athrill and robots" [#14](https://github.com/toppers/hakoniwa-single_robot/issues/14)
+- [ ] Add description of how to customize robots and course environment [#15](https://github.com/toppers/hakoniwa-single_robot/issues/15)
+- [ ] Englishization of README [#16](https://github.com/toppers/hakoniwa-single_robot/issues/16)
 
-## 謝辞
+## Acknowledgments
+We thank Associate Professor Akio YOSHIOKA and undergraduate students Ryoji SUGISAKI, Akemi KIMURA, and Jumpei CHIBA of Takarazuka University school of media art in Tokyo for their cooperation in designing the Unity package for LEGO Mindstorms EV3.
 
-LEGO Mindstorms EV3のUnityパッケージの設計と作成にあたっては，宝塚大学 東京メディア芸術学部 吉岡章夫准教授および学部生の杉﨑涼志さん，木村明美さん，千葉純平さんにご協力いただきました．
+Unity assets of HackEV are based on data provided by the ET Robocon Executive Committee. We want to express our deepest gratitude to the Executive Committee.
+However, please note that this asset is different from the production environment of the ET Robocon. Please use this asset only for personal or educational use.
 
-HackEVのUnityアセットは，ETロボコン実行委員会より提供いただいたデータを基に作成しています．実行委員会の皆さまに深く感謝いたします．  
-ただし本アセットはETロボコンの本番環境とは異なりますので，大会に参加予定の方はご注意ください．また，本アセットは，個人利用または教育利用に限定してご利用ください．
+## Licenses
 
-## ライセンス
-
-[TOPPERSライセンス](https://www.toppers.jp/license.html)で公開しています．  
-著作権者はTOPPERSプロジェクト箱庭ワーキンググループです．詳細は[LICENSE.md](./LICENSE.md)をご参照ください．
+It is released under [TOPPERS license](https://www.toppers.jp/license.html).  
+The copyright holder is TOPPERS Project Hakoniwa Working Group. 
+Please refer to [LICENSE.md](. /LICENSE.md) for details.

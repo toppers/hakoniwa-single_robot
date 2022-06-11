@@ -7,7 +7,7 @@
 
 A version number is assigned, such as `vX.Y.Z`.
 This number is managed in `appendix/latest_version.txt`.
-In addition, [Git/GitHub tag/release](https://github.com/toppers/hakoniwa-single_robot/releases) and [Docker Hub tag number](https://hub.docker.com/ r/toppersjp/hakoniwa-single_robot/tags).
+In addition, [Git/GitHub tag/release](https://github.com/toppers/hakoniwa-single_robot/releases) and [Docker Hub tag number](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags).
 
 Each version number is updated according to the following rules.
 

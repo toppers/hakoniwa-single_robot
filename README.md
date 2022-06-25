@@ -11,8 +11,8 @@ This prototype model is designed with [ET Robocon](https://www.etrobo.jp/) and a
 
 ## Requirements
 
-* Windows 10 PC running WSL 2/Ubuntu 20.04 LTS (after this, referred to as WSL2)
-  * For details on how to install WSL2, please refer to "[Installing WSL on Windows 10 | Microsoft Docs](https://docs.microsoft.com/ja-jp/windows/wsl/install-win10)" etc.
+* Windows 10 PC running WSL 2/Ubuntu 20.04 LTS (after this, referred to as "WSL2")
+  * For details on how to install WSL2, please refer to "[Installing WSL on Windows 10 | Microsoft Docs](https://docs.microsoft.com/windows/wsl/install-win10)" etc.
   * All operations in this procedure are performed on the WSL2 terminal (or in the docker container).
 
 ## Preparations
@@ -20,7 +20,7 @@ This prototype model is designed with [ET Robocon](https://www.etrobo.jp/) and a
 ### Clone this repository
 
 The latest version is **v1.3.1**.  
-See also "[version information / update history](/appendix/version.md)" (the version number corresponds to [tag/release in Git/GitHub](https://github.com/toppers/hakoniwa-single_robot/ releases](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags) and [Docker Hub tag number](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags))
+See also "[version information / update history](/appendix/version.md)" (the version number corresponds to [tag/release in Git/GitHub](https://github.com/toppers/hakoniwa-single_robot/releases) and [Docker Hub tag number](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)
 
 Clone this repository using the following command in the terminal of WSL2.
 
@@ -163,7 +163,7 @@ Click "Start" in the upper left corner of the Unity app window.
 You should see a log of athrill automatically starting and the control program executing in Terminal A.
 You will also see the robot's behavior and the external environment displayed visually in the Unity app.
 
-![動作例](https://github.com/toppers/hakoniwa/raw/web/static/img/prototypes/modelAdemo.gif)
+![example](https://github.com/toppers/hakoniwa/raw/web/static/img/prototypes/modelAdemo.gif)
 
 Each window in this video corresponds to the following.
 
@@ -172,9 +172,9 @@ Each window in this video corresponds to the following.
   - Automatic startup of athrill and log output
 - Bottom left: Terminal B
   - Build microcontroller control program
-- Upper right: Terminal C
+- Top right: Terminal C
   - Launching Unity app
-- Lower right: Unity app window
+- Bottom right: Unity app window
 
 ## Edit control program and re-run simulation
 
@@ -225,4 +225,4 @@ However, please note that this asset is different from the production environmen
 
 It is released under [TOPPERS license](https://www.toppers.jp/license.html).  
 The copyright holder is TOPPERS Project Hakoniwa Working Group. 
-Please refer to [LICENSE.md](. /LICENSE.md) for details.
+Please refer to [LICENSE.md](./LICENSE.md) for details.

@@ -20,7 +20,7 @@ This prototype model is designed with [ET Robocon](https://www.etrobo.jp/) and a
 ### Clone this repository
 
 The latest version is **v1.3.1**.  
-See also "[version information / update history](/appendix/version.md)" (the version number corresponds to [tag/release in Git/GitHub](https://github.com/toppers/hakoniwa-single_robot/releases) and [Docker Hub tag number](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)
+See also "[version information / update history](/appendix/version.md)" (the version number corresponds to [tag/release in Git/GitHub](https://github.com/toppers/hakoniwa-single_robot/releases) and [Docker Hub tag number](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags).
 
 Clone this repository using the following command in the terminal of WSL2.
 

@@ -7,7 +7,7 @@ The [TOPPERS Project Hokoniwa WG](https://toppers.github.io/hakoniwa/en) is work
 This repository provides an execution environment for one of the prototype models, ["simulator for stand-alone robots"](https://toppers.github.io/hakoniwa/prototypes/single-robot/), using WSL 2 and Docker with minimal configuration and procedures.
 This prototype model is designed with [ET Robocon](https://www.etrobo.jp/) and allows the user to verify the collaboration between the operation of the control program on the embedded microcomputer simulator [athrill](https://github.com/toppers/athrill) and the robot control operation on Unity. 
 
-![](https://toppers.github.io/hakoniwa/img/prototypes/modelA.png)
+![](https://toppers.github.io/hakoniwa/img/prototypes/modelA.en.png)
 
 ## Requirements
 

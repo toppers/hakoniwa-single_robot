@@ -36,8 +36,10 @@ then
 	then
 		export ETHRER_ID=eth0
 		export IFCONFIG_IPADDR=`ifconfig | grep -A 1 ${ETHRER_ID} | grep inet | awk '{print $2}'`
-		export RESOLVE_IPADDR=`cat /etc/resolv.conf | grep nameserver | awk '{print $2}'`
+  else
+		export IFCONFIG_IPADDR=127.0.0.1
 	fi
+	export RESOLVE_IPADDR=`cat /etc/resolv.conf | grep nameserver | awk '{print $2}'`
 else
 	export IFCONFIG_IPADDR=127.0.0.1
 	export RESOLVE_IPADDR=127.0.0.1

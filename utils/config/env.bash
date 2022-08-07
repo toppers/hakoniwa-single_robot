@@ -2,7 +2,12 @@
 
 ####### Hakoniwa config ##########################
 #available values: wsl1 or wsl2 or linux or mac
-export OS_TYPE=wsl2
+if [[ "$(uname -r)" == *microsoft* ]];
+then
+	export OS_TYPE=wsl2
+else
+	export OS_TYPE=linux
+fi
 
 #available values: native or docker
 export RUNTIME_TYPE=docker

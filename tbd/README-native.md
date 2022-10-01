@@ -27,7 +27,8 @@
       ```
 * athrill をインストールしてください．
    * 以下のフォルダに移動します．
-     * athrill-target-v850e2m/build_linux
+     * linuxの場合: athrill-target-v850e2m/build_linux
+     * macの場合: athrill-target-v850e2m/build_mac
    * ビルドします．
      * make clean; make timer32=true serial_fifo_enable=true vdev_disable=true enable_bt_serial=true skip_clock_bugfix=true supress_detect_error=true etrobo_optimize=true reuse_port=true
    * 環境変数 PATH に athrill2 のバイナリ格納フォルダを追加してください．

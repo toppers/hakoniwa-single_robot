@@ -36,7 +36,7 @@
     - [hakoniwa-core](https://github.com/toppers/hakoniwa-core) / sha: [c60ec37e95e3b33e4f09881525cd3eabbea1f781](https://github.com/toppers/hakoniwa-core/tree/c60ec37e95e3b33e4f09881525cd3eabbea1f781)
 
 
-**Full Changelog**: https://github.com/toppers/hakoniwa-single_robot/compare/v1.3.1...v1.3.2
+**Full Changelog**: https://github.com/toppers/hakoniwa-single_robot/compare/v1.3.1...v1.4.0
 
 ### v1.3.1 @ 2022/05/14
 

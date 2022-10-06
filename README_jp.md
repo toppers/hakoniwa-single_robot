@@ -18,13 +18,14 @@
 
 ### 本リポジトリのclone
 
-現在の最新版は **v1.3.1** です．  
+現在の最新版は **v1.4.0** です．
+
 「[バージョン情報・更新履歴](/appendix/version.md)」も参照してください（バージョン番号は[Git/GitHubのtag/release](https://github.com/toppers/hakoniwa-single_robot/releases)および[Docker Hubのtag番号](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags)に対応しています）
 
 WSL2のターミナルで下記を実行して本リポジトリをcloneしてください．
 
 ```
-git clone -b v1.3.1 https://github.com/toppers/hakoniwa-single_robot.git
+git clone -b v1.4.0 https://github.com/toppers/hakoniwa-single_robot.git
 ```
 
 なおWSL2のファイルシステムはWindowsエクスプローラーからは `\\wsl$\Ubuntu-20.04` にてアクセス可能です．
@@ -209,7 +210,6 @@ FWが邪魔していることが多いです。ファイアウォールの設定
 - [ ] mmap版の使用方法 [#8](https://github.com/toppers/hakoniwa-single_robot/issues/8)
 - [ ] 「athrillとロボット間の通信パケットのビジュアライズ」の動作確認 [#14](https://github.com/toppers/hakoniwa-single_robot/issues/14)
 - [ ] ロボットやコース環境のカスタマイズ方法の説明の追加 [#15](https://github.com/toppers/hakoniwa-single_robot/issues/15)
-- [ ] READMEの英語化 [#16](https://github.com/toppers/hakoniwa-single_robot/issues/16)
 
 ## 謝辞
 

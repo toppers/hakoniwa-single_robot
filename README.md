@@ -19,13 +19,14 @@ This prototype model is designed with [ET Robocon](https://www.etrobo.jp/) and a
 
 ### Clone this repository
 
-The latest version is **v1.3.1**.  
+The latest version is **v1.4.0**.
+
 See also "[version information / update history](/appendix/version.md)" (the version number corresponds to [tag/release in Git/GitHub](https://github.com/toppers/hakoniwa-single_robot/releases) and [Docker Hub tag number](https://hub.docker.com/r/toppersjp/hakoniwa-single_robot/tags).
 
 Clone this repository using the following command in the terminal of WSL2.
 
 ```
-git clone -b v1.3.1 https://github.com/toppers/hakoniwa-single_robot.git
+git clone -b v1.4.0 https://github.com/toppers/hakoniwa-single_robot.git
 ```
 Note: that the WSL2 file system can be accessed from Windows Explorer as `\\wsl$\Ubuntu-20.04` 
 
@@ -215,7 +216,6 @@ Please let us know your comments and suggestions for improvement of "Hakoniwa Pr
 - [ ] How to use the mmap version [#8](https://github.com/toppers/hakoniwa-single_robot/issues/8)
 - [ ] Confirming the operation of "visualization of communication packets between athrill and robots" [#14](https://github.com/toppers/hakoniwa-single_robot/issues/14)
 - [ ] Add description of how to customize robots and course environment [#15](https://github.com/toppers/hakoniwa-single_robot/issues/15)
-- [ ] Englishization of README [#16](https://github.com/toppers/hakoniwa-single_robot/issues/16)
 
 ## Acknowledgments
 We thank Associate Professor Akio YOSHIOKA and undergraduate students Ryoji SUGISAKI, Akemi KIMURA, and Jumpei CHIBA of Takarazuka University school of media art in Tokyo for their cooperation in designing the Unity package for LEGO Mindstorms EV3.

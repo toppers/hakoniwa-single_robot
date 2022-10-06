@@ -26,11 +26,27 @@ Each version number is updated according to the following rules.
 
 You can check the version information of Hakoniwa assets in `utils/check_assets_version.bash`.
 
+### v1.4.0 @ 2022/10/06
+
+* Readme in english by @urashima0429 in https://github.com/toppers/hakoniwa-single_robot/pull/37
+* enable the operation on linux/docker env with Unity Editor by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/38
+* follow the latest instruction to install docker by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/39
+
+- Hakoniwa asset and version (commit hash) information: updated from v1.3.0
+    - [athrill](https://github.com/toppers/athrill) / sha: [f09d7d551ef947538667bdef7da2d4d48e181112](https://github.com/toppers/athrill/tree/f09d7d551ef947538667bdef7da2d4d48e181112)
+    - [athrill-device](https://github.com/toppers/athrill-device) / sha: [680533b0cad8c691f7435c33d5e03edd59bb3da9](https://github.com/toppers/athrill-device/tree/680533b0cad8c691f7435c33d5e03edd59bb3da9)
+    - [athrill-target-v850e2m](https://github.com/toppers/athrill-target-v850e2m) / sha: [88008188920ae63f601df84d005e0e9616176080](https://github.com/toppers/athrill-target-v850e2m/tree/88008188920ae63f601df84d005e0e9616176080)
+    - [hakoniwa-core](https://github.com/toppers/hakoniwa-core) / sha: [c60ec37e95e3b33e4f09881525cd3eabbea1f781](https://github.com/toppers/hakoniwa-core/tree/c60ec37e95e3b33e4f09881525cd3eabbea1f781)
+
+**Full Changelog**: https://github.com/toppers/hakoniwa-single_robot/compare/v1.3.1...v1.3.2
+
 ### v1.3.1 @ 2022/05/14
 
 * improve README to make it easier to copy command by @takasehideki in https://github.com/toppers/hakoniwa-single_robot/pull/36
 
 - No change in Hakoniwa assets and version (commit hash) from v1.3.0
+
+**Full Changelog**: https://github.com/toppers/hakoniwa-single_robot/compare/v1.3.0...v1.3.1
 
 ### v1.3.0 @ 2022/05/09
 

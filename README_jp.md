@@ -42,8 +42,10 @@ $ service docker status
  * Docker is running   # または " * Docker is not running "
 ```
 
-Docker Engineのインストールはやや手数が多いため，本リポジトリの [`docker/install-docker.bash`](/docker/install-docker.bash) にまとめてあります（「[Install Docker Engine on Ubuntu | Docker Documentation](https://docs.docker.com/engine/install/ubuntu/)」を参考に作成しました）．  
-下記のように実行してください．
+Docker Engineのインストールはやや手数が多いため，下記の公式マニュアルにある実行コマンドを本リポジトリの [`docker/install-docker.bash`](/docker/install-docker.bash) にまとめています．本スクリプトの実行時に問題がありましたら，公式マニュアルの手順に従ってインストールを進めてください．  
+[Install Docker Engine on Ubuntu | Docker Documentation](https://docs.docker.com/engine/install/ubuntu/)
+
+スクリプトを用いたDockerのインストールには，下記のように実行してください．
 
 ```
 bash docker/install-docker.bash

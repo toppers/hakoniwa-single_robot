@@ -32,4 +32,4 @@ docker run \
 	-v ${WORKSPACE_DIR}/utils/config:/root/workspace/config \
 	-v ${WORKSPACE_DIR}/proxy:/root/workspace/proxy \
 	-v ${WORKSPACE_DIR}/utils:/root/workspace/utils \
-	-it --rm --net host --name hakoniwa_single-robot ${DOCKER_IMAGE}
+	-it --rm --net host --name hakoniwa_single-robot-${HAKO_ASSET_NAME} ${DOCKER_IMAGE}

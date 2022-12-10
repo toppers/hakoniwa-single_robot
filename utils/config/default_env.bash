@@ -35,7 +35,7 @@ then
 	if [ ${OS_TYPE} = "wsl2" ]
 	then
 		export ETHRER_ID=eth0
-		export IFCONFIG_IPADDR=`ifconfig | grep -A 1 ${ETHRER_ID} | grep inet | awk '{print $2}'`
+		export IFCONFIG_IPADDR=`ifconfig | grep -A 1 ${ETHRER_ID} | grep inet | grep -v inet6 | awk '{print $2}'`
   else
 		export IFCONFIG_IPADDR=127.0.0.1
 	fi

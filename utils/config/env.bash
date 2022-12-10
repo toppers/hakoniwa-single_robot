@@ -21,6 +21,13 @@ export PACKET_TYPE=Protobuf
 #available values: "None" or "bt"
 export OPT_BT="None"
 
+#hakoniwa asset name
+export HAKO_ASSET_NAME=Athrill
+
+#Athrill UDP PORT
+export ATHRILL_TX_PORTNO=54001
+export ATHRILL_RX_PORTNO=54002
+
 if [ -d utils ]
 then
 	source utils/config/default_env.bash
